@@ -1,0 +1,103 @@
+{
+  "name": "shopping-cart",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "ng build",
+    "build:prod": "npm run build -- --prod --extractCss --optimization",
+    "build:license": "npm run license-checker -- --out ./dist/license.csv --customPath license.config.json --json",
+    "e2e": "ng e2e",
+    "e2e-watch": "concurrently --kill-others \"npm start\" \"npm run e2e-watch-no-serve\"",
+    "e2e-watch-no-serve": "watch \"npm run e2e -- --dev-server-target=\" src e2e --wait=1",
+    "license-checker": "license-checker",
+    "lint": "ng lint",
+    "rimraf": "rimraf",
+    "prettier": "prettier",
+    "prettier:ci": "npm run prettier -- --check ./src/**/*.ts ./projects/**/*.ts",
+    "prettier:format": "npm run prettier -- --write",
+    "sass-lint": "sass-lint './src/**/*.scss, ./projects/**/*.scss' -v -q",
+    "start": "ng serve",
+    "storybook:serve": "start-storybook -p 6006",
+    "storybook:build": "npm run rimraf -- ./dist/storybook-static && build-storybook --output-dir ./dist/storybook-static",
+    "test": "ng test",
+    "test:ci": "npm run test -- --watch=false --browsers=ChromeHeadless"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~8.2.14",
+    "@angular/cdk": "~8.2.3",
+    "@angular/common": "~8.2.14",
+    "@angular/compiler": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@angular/fire": "~5.2.3",
+    "@angular/forms": "~8.2.14",
+    "@angular/material": "~8.2.3",
+    "@angular/platform-browser": "~8.2.14",
+    "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/router": "~8.2.14",
+    "@ngrx/data": "~8.6.0",
+    "@ngrx/effects": "~8.6.0",
+    "@ngrx/entity": "~8.6.0",
+    "@ngrx/router-store": "~8.6.0",
+    "@ngrx/store": "~8.6.0",
+    "@storybook/cli": "~5.3.9",
+    "firebase": "~7.6.1",
+    "hammerjs": "~2.0.8",
+    "rxjs": "~6.4.0",
+    "tslib": "~1.10.0",
+    "zone.js": "~0.9.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.803.23",
+    "@angular/cli": "~8.3.19",
+    "@angular/compiler-cli": "~8.2.14",
+    "@angular/language-service": "~8.2.14",
+    "@babel/core": "~7.8.3",
+    "@nrwl/cypress": "^8.12.1",
+    "@nrwl/workspace": "^8.12.1",
+    "@storybook/addon-actions": "~5.3.9",
+    "@storybook/addon-links": "~5.3.9",
+    "@storybook/addon-notes": "~5.3.9",
+    "@storybook/addons": "~5.3.9",
+    "@storybook/angular": "~5.3.9",
+    "@types/jasmine": "~3.3.8",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.10.59",
+    "babel-loader": "~8.0.6",
+    "codelyzer": "~5.0.0",
+    "concurrently": "^5.1.0",
+    "cypress": "^3.8.3",
+    "husky": "~1.3.1",
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "json-server": "~0.15.0",
+    "karma": "~4.1.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "~0.2.2",
+    "lint-staged": "~8.1.0",
+    "ngrx-store-freeze": "~0.2.4",
+    "prettier": "~1.17.1",
+    "rimraf": "~2.6.3",
+    "sass-lint": "~1.13.1",
+    "ts-node": "~7.0.1",
+    "tslint": "~5.11.0",
+    "typescript": "~3.4.5",
+    "watch": "^1.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run lint",
+      "pre-push": "npm run test -- --watch=false"
+    }
+  },
+  "lint-staged": {
+    "*.{ts, json}": [
+      "npm run prettier:format",
+      "git add"
+    ],
+    "*.{scss, sass}": [
+      "npm run sass-lint"
+    ]
+  }
+}
