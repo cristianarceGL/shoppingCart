@@ -1,0 +1,17 @@
+$grid-columns: 12;
+
+.container {
+  margin: 0 3vw;
+
+  &-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+  }
+
+  @for $i from 1 through $grid-columns {
+    &-col-#{$i} {
+      flex-basis: (100 / ($grid-columns / $i)) * 1%;
+    }
+  }
+}

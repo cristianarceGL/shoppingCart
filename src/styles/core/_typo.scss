@@ -1,0 +1,98 @@
+@import 'variables';
+
+html,
+body {
+  font: 14px/22px $font-regular;
+}
+
+h1,
+.h1 {
+  font: 96px/112px $font-regular;
+}
+
+h2,
+.h2 {
+  font: 60px/72px $font-regular;
+}
+
+h3,
+.h3 {
+  font: 48px/70px $font-regular;
+}
+
+h4,
+.h4 {
+  font: 34px/44px $font-regular;
+}
+
+h5,
+.h5 {
+  font: 24px/40px $font-regular;
+}
+
+h6,
+.h6 {
+  font: 20px/28px $font-regular;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $sc-light-high-emphasis;
+}
+
+a {
+  font: 16px/24px $font-regular;
+}
+
+p,
+.p {
+  color: $sc-light-medium-emphasis;
+  font: 14px/22px $font-regular;
+
+  &.large {
+    font: 16px/24px $font-regular;
+  }
+
+  &.small {
+    font: 12px/18px $font-regular;
+  }
+
+}
+
+.subtitle {
+  font: 16px/24px $font-regular;
+  letter-spacing: 0.5px;
+
+  &.small {
+    font: 14px/20px $font-regular;
+  }
+}
+
+.button {
+  font: 14px/20px $font-regular;
+  letter-spacing: 1.5px;
+}
+
+.caption {
+  font: 10px/14px $font-regular;
+}
+
+.overline {
+  font: 10px/14px $font-regular;
+  letter-spacing: 1px;
+}
