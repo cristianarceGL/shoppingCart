@@ -1,0 +1,106 @@
+@import '../../../core/variables';
+
+// ===============================
+// Main Palette Color Definition
+// ===============================
+// define a real custom palette (using http://mcg.mbitson.com)
+$sc-primary-palette-primary: (50: #E3F1F7,
+  100: #BADBED,
+  200: #91C5E2,
+  300: #6AAFD7,
+  400: #4D9ED0,
+  500: #328FCA,
+  600: #2782BE,
+  700: #1B71AC,
+  800: #11619B,
+  900: #00457C,
+  A100: #BADBED,
+  A200: #91C5E2,
+  A400: #4D9ED0,
+  A700: #479150,
+  contrast: (50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ));
+
+$sc-primary-palette-accent: (50: #FEF8E2,
+  100: #FCECB5,
+  200: #FBE086,
+  300: #FAD557,
+  400: #F9CA36,
+  500: #F8C123,
+  600: #F8B31E,
+  700: #F7A11A,
+  800: #F69117,
+  900: #F57313,
+  A100: #FCECB5,
+  A200: #FBE086,
+  A400: #F9CA36,
+  A700: #F7A11A,
+  contrast: (50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ));
+
+$sc-primary-palette-warning: (50 : #f9e0e0,
+  100 : #f0b3b3,
+  200 : #e68080,
+  300 : #db4d4d,
+  400 : #d42626,
+  500 : #cc0000,
+  600 : #c70000,
+  700 : #c00000,
+  800 : #b90000,
+  900 : #ad0000,
+  A100 : #ffd7d7,
+  A200 : #ffa4a4,
+  A400 : #ff7171,
+  A700 : #ff5858,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  ));
+
+// Design System Primary color scheme
+$palette-primary: mat-palette($sc-primary-palette-primary, 900);
+$palette-accent: mat-palette($sc-primary-palette-accent, 700);
+$palette-warning: mat-palette($sc-primary-palette-warning, 400);
+$primary-default-theme: mat-light-theme($palette-primary, $palette-accent, $palette-warning);
+
+$background: map-get($primary-default-theme, background);
+$background: map-merge($background, (background: $sc-light-theme-background));
+
+$primary-theme: map-merge($primary-default-theme, (background: $background));

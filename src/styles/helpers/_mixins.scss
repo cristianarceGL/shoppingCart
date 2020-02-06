@@ -1,0 +1,12 @@
+@import '../core/variables';
+
+@mixin font-face($family, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
+    src: local($family),
+    url('#{$font-url}/OpenSans-#{$style}.ttf') format('truetype');
+    // Add any type of font you need to support here
+  }
+}
