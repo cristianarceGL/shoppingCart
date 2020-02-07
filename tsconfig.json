@@ -17,7 +17,23 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@enviroments/*": [
+        "src/environments/*"
+      ],
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@app/assets/*": [
+        "src/assets/*"
+      ],
+      "@app/shared/*": [
+        "src/shared/*"
+      ],
+      "core-js/es7/reflect": ["node_modules/core-js/proposals/reflect-metadata"],
+      "core-js/es6/*": ["node_modules/core-js/es"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
