@@ -28,6 +28,9 @@
       "@app/assets/*": [
         "src/assets/*"
       ],
+      "@app/features/*": [
+        "src/features/*"
+      ],
       "@app/shared/*": [
         "src/shared/*"
       ],
