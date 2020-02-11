@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+@import 'vendors/material/material';
+@import 'core/fonts';
+@import 'core/layout';
+@import 'core/typo';
+
+@include mat-core();
+
+// // Design System Primary color scheme
+@include angular-material-theme($primary-theme);
+@include sc-custom-components-theme($primary-theme);

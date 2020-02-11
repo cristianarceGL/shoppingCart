@@ -1,0 +1,17 @@
+@import '../helpers/mixins';
+@import '../helpers/functions';
+@import 'variables';
+
+$fonts: (regular: (fontname: first($font-regular),
+    weight: 400,
+    style: 'Regular'
+  ));
+
+@each $label,
+$map in $fonts {
+  $font-name: map-get($map, fontname);
+  $weight: map-get($map, weight);
+  $style: map-get($map, style);
+
+  @include font-face($font-name, $weight, $style);
+}
