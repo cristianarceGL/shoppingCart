@@ -31,6 +31,9 @@
       "@app/features/*": [
         "src/features/*"
       ],
+      "@app/mockdata/*": [
+        "src/mockdata/*"
+      ],
       "@app/shared/*": [
         "src/shared/*"
       ],
