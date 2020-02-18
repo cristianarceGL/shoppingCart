@@ -104,14 +104,4 @@ describe('Auth Effects', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
-
-  it(`should call the login service only once, and retrieve user's info`, () => {
-    actions = new ReplaySubject(1);
-    spyOnProperty(authService, 'currentUser$').and.returnValue(of(user.user));
-    actions.next(authActions.login(authenticate));
-
-    effects.login$.subscribe(result => {
-      expect(result).toEqual(authActions.loginSuccess(user));
-    });
-  });
 });

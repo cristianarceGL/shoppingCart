@@ -29,7 +29,7 @@ export class AuthService {
   public async logIn(authenticate: any): Promise<any> {
     return await this.afAuth.auth
       .signInWithEmailAndPassword(authenticate.email, authenticate.password)
-      .then(_ => this.currentUser$)
+      .then(user => user.user)
       .catch(_ => console.log('error while looging user in'));
   }
 
