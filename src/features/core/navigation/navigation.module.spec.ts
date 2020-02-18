@@ -8,7 +8,7 @@ describe('NavigationModule', () => {
     }).compileComponents();
   }));
 
-  it('should create the navigation module', () => {
+  it('should create', () => {
     expect(NavigationModule).toBeDefined();
   });
 });
