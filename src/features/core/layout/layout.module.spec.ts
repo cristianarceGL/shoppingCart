@@ -1,5 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
-import { LayoutModule } from './layout.module';
+
+import { LayoutModule } from '@app/features/core/layout/layout.module';
 
 describe('LayoutModule', () => {
   beforeEach(async(() => {
