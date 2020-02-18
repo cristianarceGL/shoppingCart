@@ -1,35 +1,37 @@
-import { TestBed, async } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+
+import { AppComponent } from '@app/app.component';
+import { authReducer } from '@app/features/auth/+state/+auth.reducer';
+import { LayoutModule } from '@app/features/core/layout/layout.module';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule, LayoutModule, StoreModule.forRoot({ auth: authReducer })],
+      declarations: [AppComponent],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'shoppingCart'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('shoppingCart');
+  it(`should have as title 'sc-admin-site'`, () => {
+    expect(component.title).toEqual('sc-admin-site');
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('shoppingCart app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Gorilla Shopping Cart app is running!');
   });
 });
