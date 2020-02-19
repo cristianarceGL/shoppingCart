@@ -1,9 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 
-import { HeaderModule } from './header.module';
-import { HeaderComponent } from './header.component';
-import { SharedModule } from 'src/shared/shared.module';
+import { MaterialModule } from '@app/shared/material';
+import { HeaderComponent } from '@app/features/core/navigation/header/header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -11,7 +9,8 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HeaderModule, SharedModule, RouterTestingModule],
+      declarations: [HeaderComponent],
+      imports: [MaterialModule],
     }).compileComponents();
   }));
 
@@ -21,7 +20,7 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the header', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,9 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutModule } from './layout.module';
-import { LayoutComponent } from './layout.component';
-import { SharedModule } from 'src/shared/shared.module';
+import { authReducer } from '@app/features/auth/+state/+auth.reducer';
+import { LayoutModule } from '@app/features/core/layout/layout.module';
+import { LayoutComponent } from '@app/features/core/layout/layout.component';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -11,7 +12,7 @@ describe('LayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [LayoutModule, SharedModule, RouterTestingModule],
+      imports: [RouterTestingModule, LayoutModule, StoreModule.forRoot({ auth: authReducer })],
     }).compileComponents();
   }));
 
@@ -21,7 +22,7 @@ describe('LayoutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the layout', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,8 +1,47 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatProgressSpinnerModule, MatToolbarModule } from '@angular/material';
+import {
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatListModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatSnackBarModule,
+  MatTooltipModule,
+} from '@angular/material';
 
-const modules = [MatProgressSpinnerModule, MatToolbarModule];
+export {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+  MatSnackBarConfig,
+  MatSnackBar,
+} from '@angular/material';
+
+const modules = [
+  FlexLayoutModule,
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatListModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatSnackBarModule,
+  MatTooltipModule,
+];
 
 @NgModule({
   imports: [...modules],
