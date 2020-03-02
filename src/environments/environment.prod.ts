@@ -11,3 +11,5 @@ export const environment = {
     measurementId: 'G-5NLWRW7X8P',
   },
 };
+
+export const envModules = [];

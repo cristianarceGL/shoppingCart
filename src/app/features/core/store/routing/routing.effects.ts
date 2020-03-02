@@ -5,16 +5,16 @@ import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 
-import * as navRoutingActions from '@app/features/core/nav-routing/+state/+nav-routing.actions';
+import * as routingActions from '@app/features/core/store/routing/routing.actions';
 
 @Injectable()
-export class NavRoutingEffects {
+export class RoutingEffects {
   constructor(private actions$: Actions, private router: Router, private location: Location) {}
 
   public navigate$: Observable<any> = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(navRoutingActions.GO),
+        ofType(routingActions.GO),
         map(action => action.payload),
         tap(payload => this.router.navigate(payload.path, { queryParams: payload.query, ...payload.extras }))
       ),
@@ -24,7 +24,7 @@ export class NavRoutingEffects {
   public navigateBack$: Observable<any> = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(navRoutingActions.BACK),
+        ofType(routingActions.BACK),
         tap(() => this.location.back())
       ),
     { dispatch: false }
@@ -33,7 +33,7 @@ export class NavRoutingEffects {
   public navigateForward$: Observable<any> = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(navRoutingActions.FORWARD),
+        ofType(routingActions.FORWARD),
         tap(() => this.location.forward())
       ),
     { dispatch: false }

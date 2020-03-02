@@ -1,7 +1,7 @@
 import * as fromRouter from '@ngrx/router-store';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { RouterStateUrl, navRoutingFeatureKey } from '@app/features/core/nav-routing/+state/+nav-routing.reducer';
+import { RouterStateUrl, navRoutingFeatureKey } from '@app/features/core/store/routing/routing.reducer';
 
 export const getNavRoutingState = createFeatureSelector<fromRouter.RouterReducerState<RouterStateUrl>>(
   navRoutingFeatureKey

@@ -6,9 +6,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 
 import { environment } from '@enviroments/environment';
-import { NavRoutingEffects } from '@app/features/core/nav-routing/+state/+nav-routing.effects';
-import { NavRoutingSerializer } from '@app/features/core/nav-routing/+state/+nav-routing.serializer';
-import { navRoutingFeatureKey, reducers } from '@app/features/core/nav-routing/+state/+nav-routing.reducer';
+import { RoutingEffects } from '@app/features/core/store/routing/routing.effects';
+import { RoutingSerializer } from '@app/features/core/store/routing/routing.serializer';
+import { navRoutingFeatureKey, reducers } from '@app/features/core/store/routing/routing.reducer';
 export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze] : [];
 
 @NgModule({
@@ -16,10 +16,10 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
     StoreModule.forFeature(navRoutingFeatureKey, reducers, {
       metaReducers,
     }),
-    EffectsModule.forFeature([NavRoutingEffects]),
+    EffectsModule.forFeature([RoutingEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: NavRoutingSerializer }],
+  providers: [{ provide: RouterStateSerializer, useClass: RoutingSerializer }],
 })
-export class NavRoutingStoreModule {}
+export class RoutingStoreModule {}

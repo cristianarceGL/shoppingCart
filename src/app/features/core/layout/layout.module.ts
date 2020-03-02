@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '@app/shared/shared.module';
 import { LayoutComponent } from '@app/features/core/layout/layout.component';
-import { NavigationModule } from '@app/features/core/navigation/navigation.module';
+import { HeaderModule } from '@app/features/core/layout/header/header.module';
+import { FooterModule } from '@app/features/core/layout/footer/footer.module';
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, RouterModule, NavigationModule],
+  imports: [CommonModule, MaterialModule, RouterModule, HeaderModule, FooterModule],
   declarations: [LayoutComponent],
   exports: [LayoutComponent],
 })

@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
 import { MaterialModule } from '@app/shared/shared.module';
 import { ControlsModule } from '@app/shared/controls/controls.module';
-import { NavRoutingStoreModule } from '@app/features/core/nav-routing/+state/+nav-routing-store.module';
+import { RoutingStoreModule } from '@app/features/core/store/routing/routing-store.module';
 import { AdminProductComponent } from '@app/features/admin-product/admin-product.component';
 import { AdminProductRoutingModule } from '@app/features/admin-product/admin-product-routing.module';
 
@@ -19,7 +19,7 @@ const modules = [
   RouterModule,
   AdminProductRoutingModule,
   ControlsModule,
-  NavRoutingStoreModule,
+  RoutingStoreModule,
 ];
 
 @NgModule({
