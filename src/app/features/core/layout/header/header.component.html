@@ -1,7 +1,0 @@
-<mat-toolbar class="app-header">
-  <div><img src="assets/GL-Logo.png"></div>
-  <span class="nav-tool-items">
-    <a *ngIf="user" mat-button>{{user?.email}}</a>
-    <a *ngIf="user" mat-button (click)="logOut()">Log out</a>
-  </span>
-</mat-toolbar>

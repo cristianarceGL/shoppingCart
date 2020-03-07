@@ -63,7 +63,7 @@ export class AdminProductComponent implements OnInit, OnDestroy {
     this.currentView = DisplayView.List;
   }
 
-  public addToCart(product: any): void {
+  public addToCart(): void {
     // this.productSelected$ = this.store.pipe(select(ProductSelectors.getProductSelected, { productId }));
   }
 }

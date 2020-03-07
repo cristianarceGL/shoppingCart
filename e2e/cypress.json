@@ -8,6 +8,7 @@
   "videosFolder": "../../dist/cypress/shoppingCart-e2e/videos",
   "screenshotsFolder": "../../dist/cypress/shoppingCart-e2e/screenshots",
   "chromeWebSecurity": false,
-  "baseUrl": "http://localhost:4200"
-
+  "baseUrl": "http://localhost:4200",
+  "username": "shopping@gorilla.com",
+  "password": "Aa123456!"
 }

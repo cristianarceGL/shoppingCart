@@ -2,16 +2,16 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'sc-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
+  template: `
+    <mat-toolbar class="mat-footer">
+      <div><img src="assets/GL-Logo.png" /></div>
+    </mat-toolbar>
+  `,
+  styles: [''],
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
   @Input() public user: any;
   @Output() public signOut = new EventEmitter<void>();
-
-  constructor() {}
-
-  ngOnInit() {}
 
   public logOut(): void {
     this.signOut.emit();

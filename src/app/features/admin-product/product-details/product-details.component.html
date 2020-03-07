@@ -26,7 +26,7 @@
             <button mat-raised-button color="primary"
               [ngStyle]="{'background-color':productAdded === true ? '#373A3C' : '#0275D8' }"
               (click)="toggleAddToCart()">{{productAdded ? 'Added!' : 'Add to Cart'}}</button>
-            <button mat-raised-button color="accent" (click)="redirectToList()">Back</button>
+            <button mat-raised-button color="accent" (click)="redirectToList('back')">Back</button>
           </div>
         </div>
       </mat-card-content>

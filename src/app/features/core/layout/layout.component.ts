@@ -7,8 +7,13 @@ import { AuthReducer, AuthSelectors, AuthActions } from '@app/features/auth/+sta
 
 @Component({
   selector: 'sc-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
+  template: `
+    <sc-header [user]="user$ | async" (signOut)="logOut()"></sc-header>
+    <br />
+    <ng-content></ng-content>
+    <sc-footer></sc-footer>
+  `,
+  styles: [''],
 })
 export class LayoutComponent implements OnInit {
   user$: Observable<User | null>;

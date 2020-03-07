@@ -1,10 +1,11 @@
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { User } from '@app/features/auth/models';
+import { SubscriptionService } from '../core/firebase/services/subscription.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,12 @@ export class AuthService {
     return this.afAuth.authState.pipe(map(user => user));
   }
 
-  constructor(private afAuth: AngularFireAuth, public router: Router) {
-    this.afAuth.authState.subscribe(user => {
+  constructor(
+    private afAuth: AngularFireAuth,
+    public router: Router,
+    private subscriptionService: SubscriptionService
+  ) {
+    this.afAuth.authState.pipe(takeUntil(this.subscriptionService.unsubscribe$)).subscribe(user => {
       if (user === null) {
         this.router.navigate([`auth`]);
       }
