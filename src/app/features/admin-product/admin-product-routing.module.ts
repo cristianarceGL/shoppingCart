@@ -3,7 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminProductComponent } from './admin-product.component';
 
-export const routes: Routes = [{ path: '', component: AdminProductComponent }];
+export const routes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: '',
+        component: AdminProductComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
