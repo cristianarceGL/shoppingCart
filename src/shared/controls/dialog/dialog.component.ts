@@ -1,12 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { DialogData } from './dialog-control.model';
+import { DialogData } from './dialog.model';
 
 @Component({
-  selector: 'sc-dialog-control',
-  templateUrl: './dialog-control.component.html',
-  styleUrls: ['./dialog-control.component.scss'],
+  selector: 'sc-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss'],
 })
 export class DialogControlComponent {
   constructor(

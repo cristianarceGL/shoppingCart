@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@app/shared/material/material.module';
-import { DialogControlComponent } from './dialog-control.component';
 import { CommonModule } from '@angular/common';
-export { DialogControlComponent };
+import { SnackBarControlComponent } from './snackbar.component';
+export { SnackBarControlComponent };
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
-  entryComponents: [DialogControlComponent],
-  declarations: [DialogControlComponent],
-  exports: [DialogControlComponent],
+  entryComponents: [SnackBarControlComponent],
+  declarations: [SnackBarControlComponent],
+  exports: [SnackBarControlComponent],
 })
-export class DialogControlModule {}
+export class SnackBarControlModule {}

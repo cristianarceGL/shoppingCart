@@ -1,0 +1,52 @@
+{
+  "products": {
+    "gkClGLrI5qTUItU4PTIU": {
+      "id": "gkClGLrI5qTUItU4PTIU",
+      "title": "Death by Chocolate 70%",
+      "description": "Not all diets are set on stone, it is possible to cheat once in a while with this piece of chocolate!",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/gl-shoppingcart.appspot.com/o/Epic%234-ProductList%2FEpic4-Chocolate-Dark.png?alt=media&token=89968e1d-42c3-41bd-a578-545d945aea3d",
+      "percentage": 70,
+      "price": 70
+    },
+    "n6iOLbzmtIZPauvCagTU": {
+      "id": "n6iOLbzmtIZPauvCagTU",
+      "title": "Death by Chocolate 80%",
+      "description": "Special chocolate for people who loves cocoa flavor more than sugar!",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/gl-shoppingcart.appspot.com/o/Epic%234-ProductList%2FEpic4-Chocolate-Red.png?alt=media&token=71903dfd-b22f-4620-80e1-6ffa6e325f60",
+      "percentage": 80,
+      "price": 80
+    },
+    "mk25vwBNC7xeDy9vXRfK": {
+      "id": "mk25vwBNC7xeDy9vXRfK",
+      "title": "Death by Chocolate 90%",
+      "description": "Looking for a sugar rush?, this piece of chocolate is specially made for you then!",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/gl-shoppingcart.appspot.com/o/Epic%234-ProductList%2FEpic4-Chocolate-Yellow.png?alt=media&token=89bf918c-e402-4e4c-9dc8-af4e7ef74b9c",
+      "percentage": 90,
+      "price": 90
+    },
+    "AnaWqKRnauql1TvETeTd": {
+      "id": "AnaWqKRnauql1TvETeTd",
+      "title": "Box 10 Units DBC 70%",
+      "description": "Not all diets are set on stone, it is possible to cheat once in a while with this piece of chocolate!",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/gl-shoppingcart.appspot.com/o/Epic%234-ProductList%2FEpic4-Chocolate-Dark.png?alt=media&token=89968e1d-42c3-41bd-a578-545d945aea3d",
+      "percentage": 70,
+      "price": 700
+    },
+    "VebH0MoN9fftBaLa2Fb0": {
+      "id": "VebH0MoN9fftBaLa2Fb0",
+      "title": "Box 10 Units DBC 80%",
+      "description": "Special chocolate for people who loves cocoa flavor more than sugar!",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/gl-shoppingcart.appspot.com/o/Epic%234-ProductList%2FEpic4-Chocolate-Red.png?alt=media&token=71903dfd-b22f-4620-80e1-6ffa6e325f60",
+      "percentage": 80,
+      "price": 800
+    },
+    "hrEhYGzc3PPAPfDZhT5M": {
+      "id": "hrEhYGzc3PPAPfDZhT5M",
+      "title": "Box 10 Units DBC 90%",
+      "description": "Looking for a sugar rush?, this piece of chocolate is specially made for you then!",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/gl-shoppingcart.appspot.com/o/Epic%234-ProductList%2FEpic4-Chocolate-Yellow.png?alt=media&token=89bf918c-e402-4e4c-9dc8-af4e7ef74b9c",
+      "percentage": 90,
+      "price": 900
+    }
+  }
+}

@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 import { MaterialModule } from '@app/shared/shared.module';
-import { DialogControlComponent } from './dialog-control.component';
+import { SnackBarControlComponent } from './snackbar.module';
 
-describe('DialogControlComponent', () => {
-  let component: DialogControlComponent;
-  let fixture: ComponentFixture<DialogControlComponent>;
-  const mockDialogRef = {
+describe('SnackBarControlComponent', () => {
+  let component: SnackBarControlComponent;
+  let fixture: ComponentFixture<SnackBarControlComponent>;
+  const mockSnackBarRef = {
     close: jasmine.createSpy('close'),
   };
 
@@ -18,23 +18,22 @@ describe('DialogControlComponent', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, ReactiveFormsModule, MaterialModule],
       providers: [
-        { provide: MatDialogRef, useValue: mockDialogRef },
+        { provide: MatSnackBarRef, useValue: mockSnackBarRef },
         {
-          provide: MAT_DIALOG_DATA,
+          provide: MAT_SNACK_BAR_DATA,
           useValue: {
-            icon: 'check_circle',
-            title: 'Success',
-            body: 'Item added!',
-            action: 'Accept',
+            icon: 'error_outline',
+            message: 'Error submitting request',
+            color: 'error-snackbar',
           },
         },
       ],
-      declarations: [DialogControlComponent],
+      declarations: [SnackBarControlComponent],
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [DialogControlComponent],
+        entryComponents: [SnackBarControlComponent],
       },
     });
 
@@ -42,7 +41,7 @@ describe('DialogControlComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogControlComponent);
+    fixture = TestBed.createComponent(SnackBarControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

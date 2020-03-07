@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 
-import { DialogControlModule } from './dialog-control/dialog-control.module';
-import { SnackBarControlModule } from './snackbar-control/snackbar-control.module';
+import { CarouselModule } from './carousel/carousel.module';
+import { DialogControlModule } from './dialog/dialog.module';
+import { SnackBarControlModule } from './snackbar/snackbar.module';
 
-export { DialogControlModule } from './dialog-control/dialog-control.module';
-export { SnackBarControlModule } from './snackbar-control/snackbar-control.module';
+export { CarouselModule } from './carousel/carousel.module';
+export { DialogControlModule } from './dialog/dialog.module';
+export { SnackBarControlModule } from './snackbar/snackbar.module';
 
-const toExport = [DialogControlModule, SnackBarControlModule];
+const toExport = [DialogControlModule, SnackBarControlModule, CarouselModule];
 
 @NgModule({
   imports: [...toExport],
