@@ -29,7 +29,7 @@
         "src/assets/*"
       ],
       "@app/features/*": [
-        "src/features/*"
+        "src/app/features/*"
       ],
       "@app/mockdata/*": [
         "src/mockdata/*"

@@ -6,7 +6,7 @@ import { AppComponent } from '@app/app.component';
 import { authReducer } from '@app/features/auth/+state/+auth.reducer';
 import { LayoutModule } from '@app/features/core/layout/layout.module';
 
-describe('AppComponent', () => {
+fdescribe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 

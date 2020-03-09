@@ -1,0 +1,59 @@
+mat-card {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+
+  & mat-card-content {
+    margin: 0 16px;
+    position: relative;
+  }
+
+  &.display-style {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);
+  }
+}
+
+.displayed-item {
+  margin-top: 5vh;
+}
+
+.content {
+  padding: 10px auto;
+
+  & div {
+    margin: 20px 3px;
+  }
+}
+
+.mat-card-image {
+  margin: 0 -16px 16px -16px;
+  width: 250px;
+}
+
+p {
+  color: #666666;
+  font: 14px/18px Open Sans Regular,
+    sans-serif;
+  max-width: fit-content;
+}
+
+input {
+  border-radius: 4px;
+  width: 3vw;
+}
+
+button[color=primary] {
+  margin-right: 1vw;
+}
+
+@media screen and (max-width: 769px) {
+  input {
+    width: 10vw;
+  }
+
+  .display-style {
+    display: inline-grid;
+    margin-bottom: 5vh;
+  }
+}

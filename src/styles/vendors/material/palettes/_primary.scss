@@ -10,7 +10,7 @@ $sc-primary-palette-primary: (50: #E3F1F7,
   300: #6AAFD7,
   400: #4D9ED0,
   500: #328FCA,
-  600: #2782BE,
+  600: #0275D8,
   700: #1B71AC,
   800: #11619B,
   900: #00457C,
@@ -95,7 +95,7 @@ $sc-primary-palette-warning: (50 : #f9e0e0,
   ));
 
 // Design System Primary color scheme
-$palette-primary: mat-palette($sc-primary-palette-primary, 900);
+$palette-primary: mat-palette($sc-primary-palette-primary, 600);
 $palette-accent: mat-palette($sc-primary-palette-accent, 700);
 $palette-warning: mat-palette($sc-primary-palette-warning, 400);
 $primary-default-theme: mat-light-theme($palette-primary, $palette-accent, $palette-warning);
