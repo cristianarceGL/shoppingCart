@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+
+@mixin mat-card-style($theme) {
+  mat-card {
+    border-color: transparent;
+    cursor: pointer;
+    margin-bottom: 1rem;
+
+    & mat-card-title {
+      font-size: small !important;
+      text-align: left;
+    }
+
+    & mat-card-subtitle {
+      text-align: left;
+    }
+  }
+}
