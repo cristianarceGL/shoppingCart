@@ -14,6 +14,11 @@ import {
   MatProgressBarModule,
   MatSnackBarModule,
   MatTooltipModule,
+  MatMenuModule,
+  MatStepperModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatRadioModule,
 } from '@angular/material';
 
 export {
@@ -25,6 +30,10 @@ export {
   MatPaginator,
   MatSnackBarConfig,
   MatSnackBar,
+  MatRadioChange,
+  MatStepper,
+  MatSelect,
+  MatCheckbox,
 } from '@angular/material';
 
 const modules = [
@@ -41,6 +50,11 @@ const modules = [
   MatProgressBarModule,
   MatSnackBarModule,
   MatTooltipModule,
+  MatMenuModule,
+  MatStepperModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatRadioModule,
 ];
 
 @NgModule({

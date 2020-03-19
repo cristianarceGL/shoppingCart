@@ -2,7 +2,7 @@ import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { authReducer } from '@app/features/auth/+state/+auth.reducer';
+import { authReducer } from '@app/features/authentication/+state/+auth.reducer';
 import { LayoutModule } from '@app/features/core/layout/layout.module';
 import { LayoutComponent } from '@app/features/core/layout/layout.component';
 

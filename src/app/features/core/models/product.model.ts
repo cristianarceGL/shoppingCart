@@ -5,4 +5,5 @@ export interface Product {
   imgUrl: string;
   price: number;
   percentage: number;
+  quantity?: number;
 }

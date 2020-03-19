@@ -1,40 +1,77 @@
 import { Component, Input } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import { AnimationType, scaleIn, scaleOut, fadeIn, fadeOut } from './carousel.animations';
+import { style, animate, animation } from '@angular/animations';
+
+// =========================
+// Enum for referencing animations
+// =========================
+export enum AnimationType {
+  Scale = 'scale',
+}
+
+// =========================
+// Scale
+// =========================
+export const scaleIn = animation([
+  style({ opacity: 0, transform: 'scale(0.5)' }), // start state
+  animate('{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)', style({ opacity: 1, transform: 'scale(1)' })),
+]);
+
+export const scaleOut = animation([
+  animate('{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)', style({ opacity: 0, transform: 'scale(0.5)' })),
+]);
 
 @Component({
   selector: 'sc-carousel',
-  templateUrl: './carousel.component.html',
+  template: `
+    <div class="container" fxLayout="column">
+      <!-- carousel -->
+      <div class="carousel">
+        <ng-container *ngFor="let slide of slides; let i = index">
+          <img
+            *ngIf="i === currentSlide"
+            [src]="slide.src"
+            class="slide"
+            [ngClass]="{ resizeImg: checkCarousel(slide.src) === false }"
+            [@slideAnimation]="animationType"
+          />
+        </ng-container>
+        <!-- control arrows -->
+        <button class="control prev" (click)="onPreviousClick()">
+          <span class="arrow left"></span>
+        </button>
+        <button class="control next" (click)="onNextClick()">
+          <span class="arrow right"></span>
+        </button>
+      </div>
+    </div>
+  `,
   styleUrls: ['./carousel.component.scss'],
   animations: [
     trigger('slideAnimation', [
       /* scale */
       transition('void => scale', [useAnimation(scaleIn, { params: { time: '500ms' } })]),
       transition('scale => void', [useAnimation(scaleOut, { params: { time: '500ms' } })]),
-
-      /* fade */
-      transition('void => fade', [useAnimation(fadeIn, { params: { time: '500ms' } })]),
-      transition('fade => void', [useAnimation(fadeOut, { params: { time: '500ms' } })]),
     ]),
   ],
 })
 export class CarouselComponent {
   @Input() public slides: { headline?: string; src: string }[];
-  @Input() public animationType = AnimationType.Fade;
+  @Input() public animationType = AnimationType.Scale;
 
   public currentSlide = 0;
 
-  onPreviousClick() {
+  public onPreviousClick(): void {
     const previous = this.currentSlide - 1;
     this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
   }
 
-  onNextClick() {
+  public onNextClick(): void {
     const next = this.currentSlide + 1;
     this.currentSlide = next === this.slides.length ? 0 : next;
   }
 
-  checkCarousel(variable: string) {
+  public checkCarousel(variable: string): boolean {
     return variable.includes('Carousel');
   }
 }

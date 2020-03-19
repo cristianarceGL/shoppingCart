@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@app/shared/material/material.module';
-import { CarouselComponent } from '@app/shared/controls/carousel/carousel.component';
+import { MatSnackBarComponent } from '@app/shared/controls/mat-snack-bar/mat-snack-bar.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
-  entryComponents: [CarouselComponent],
-  declarations: [CarouselComponent],
-  exports: [CarouselComponent],
+  declarations: [MatSnackBarComponent],
+  exports: [MatSnackBarComponent],
+  providers: [MatSnackBarComponent],
 })
-export class CarouselModule {}
+export class MatSnackBarModule {}
