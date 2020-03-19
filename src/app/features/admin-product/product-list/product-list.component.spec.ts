@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, ViewChild } from '@angular/core';
 import { SharedModule } from '@app/shared/shared.module';
-import { products } from '@app/mockdata/helpers/models-data';
+import { products } from '@app/mockdata/data/models-data';
 import { ProductListComponent } from '@app/features/admin-product/product-list/product-list.component';
 
 describe('ProductDetailsComponent', () => {

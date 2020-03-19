@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { ProductListComponent } from '@app/features/admin-product/product-list/product-list.component';
+import { OrderListComponent } from '@app/features/admin-order/order-list/order-list.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule, RouterModule],
-  declarations: [ProductListComponent],
-  exports: [ProductListComponent],
+  declarations: [OrderListComponent],
+  exports: [OrderListComponent],
 })
-export class ProductListModule {}
+export class OrderListModule {}

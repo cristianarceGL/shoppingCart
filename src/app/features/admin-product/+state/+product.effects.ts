@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Observable, from, of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 
@@ -17,9 +17,7 @@ export class ProductEffects {
       switchMap(_ =>
         from(this.productService.getProducts()).pipe(
           map(actionToDispatch => actionToDispatch),
-          catchError(errorMessage =>
-            this.productService.showFailureMessage(`Error when loading products: ${errorMessage}`)
-          )
+          catchError(errorMessage => of(console.log(`Error when loading products: ${errorMessage}`)))
         )
       )
     )
@@ -31,9 +29,7 @@ export class ProductEffects {
       switchMap(_ =>
         from(this.productService.getCarouselProducts()).pipe(
           map(actionToDispatch => actionToDispatch),
-          catchError(errorMessage =>
-            this.productService.showFailureMessage(`Error when loading carousel products: ${errorMessage}`)
-          )
+          catchError(errorMessage => of(console.log(`Error when loading carousel products: ${errorMessage}`)))
         )
       )
     )

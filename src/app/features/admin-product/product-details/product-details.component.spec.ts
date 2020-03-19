@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MaterialModule } from '@app/shared/material';
-import { products } from '@app/mockdata/helpers/models-data';
+import { products } from '@app/mockdata/data/models-data';
 import { ProductDetailsComponent } from '@app/features/admin-product/product-details/product-details.component';
 
 describe('ProductDetailsComponent', () => {

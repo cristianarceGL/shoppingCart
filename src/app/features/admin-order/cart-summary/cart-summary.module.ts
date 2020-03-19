@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { ProductListComponent } from '@app/features/admin-product/product-list/product-list.component';
+import { CartSummaryComponent } from '@app/features/admin-order/cart-summary/cart-summary.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule, RouterModule],
-  declarations: [ProductListComponent],
-  exports: [ProductListComponent],
+  declarations: [CartSummaryComponent],
+  exports: [CartSummaryComponent],
 })
-export class ProductListModule {}
+export class CartSummaryModule {}
