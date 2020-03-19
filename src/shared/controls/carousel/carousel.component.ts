@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { trigger, transition, useAnimation } from '@angular/animations';
 import { style, animate, animation } from '@angular/animations';
+import { trigger, transition, useAnimation } from '@angular/animations';
 
 // =========================
 // Enum for referencing animations

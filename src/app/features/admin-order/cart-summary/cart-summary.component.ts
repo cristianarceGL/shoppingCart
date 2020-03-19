@@ -20,7 +20,9 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
         Estimated Total <span>{{ +cartTotalPrice | currency }}</span>
       </mat-card-title>
       <br />
-      <button mat-raised-button color="primary" (click)="redirectToCheckout()">Checkout</button>
+      <button mat-raised-button color="primary" (click)="redirectToCheckout()" data-cy="order-checkout">
+        Checkout
+      </button>
     </mat-card>
   `,
 })

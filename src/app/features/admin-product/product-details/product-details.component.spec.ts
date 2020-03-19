@@ -5,59 +5,54 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MaterialModule } from '@app/shared/material';
 import { products } from '@app/mockdata/data/models-data';
-import { ProductDetailsComponent } from '@app/features/admin-product/product-details/product-details.component';
+import { ProductDetailsComponent } from './product-details.component';
 
 describe('ProductDetailsComponent', () => {
-  let testHostComponent: TestHostComponent;
-  let testHostFixture: ComponentFixture<TestHostComponent>;
+  let component: TestCmpWrapper;
+  let fixture: ComponentFixture<TestCmpWrapper>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductDetailsComponent, TestHostComponent],
+      declarations: [ProductDetailsComponent, TestCmpWrapper],
       imports: [MaterialModule, FormsModule],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    testHostFixture = TestBed.createComponent(TestHostComponent);
-    testHostComponent = testHostFixture.componentInstance;
+    fixture = TestBed.createComponent(TestCmpWrapper);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should show the title in the card', () => {
-    testHostComponent.productDetailsComponent.product$ = of(products[0]);
-    testHostFixture.detectChanges();
-    expect(testHostFixture.nativeElement.querySelector('mat-card-title').innerText).toEqual(products[0].title);
+    expect(fixture.nativeElement.querySelector('mat-card-title').innerText).toEqual(products[0].title);
   });
 
   it('should listen for itemQuantity emitted changes', () => {
-    testHostComponent.productDetailsComponent.product$ = of(products[0]);
-    spyOn(testHostComponent.productDetailsComponent.productInCart, 'emit');
-    testHostFixture.detectChanges();
-
-    testHostComponent.productDetailsComponent.itemQuantity = '100';
-    testHostComponent.productDetailsComponent.toggleAddToCart();
-
-    expect(testHostComponent.productDetailsComponent.productInCart.emit).toHaveBeenCalled();
+    spyOn(component.productDetailsComponent.productInCart, 'emit');
+    fixture.detectChanges();
+    component.productDetailsComponent.itemQuantity = '100';
+    component.productDetailsComponent.toggleAddToCart();
+    expect(component.productDetailsComponent.productAdded).toEqual(true);
+    expect(component.productDetailsComponent.productInCart.emit).toHaveBeenCalled();
   });
 
   it('should listen for backTo emitted changes', () => {
-    testHostComponent.productDetailsComponent.product$ = of(products[0]);
-    spyOn(testHostComponent.productDetailsComponent.backTo, 'emit');
-    testHostFixture.detectChanges();
-
-    testHostComponent.productDetailsComponent.redirectToList(null);
-
-    expect(testHostComponent.productDetailsComponent.backTo.emit).toHaveBeenCalled();
+    spyOn(component.productDetailsComponent.backTo, 'emit');
+    fixture.detectChanges();
+    component.productDetailsComponent.redirectToList(null);
+    expect(component.productDetailsComponent.backTo.emit).toHaveBeenCalled();
   });
 
   @Component({
     selector: `sc-component`,
     template: `
-      <sc-product-details></sc-product-details>
+      <sc-product-details [product$]="mockProduct$"></sc-product-details>
     `,
   })
-  class TestHostComponent {
+  class TestCmpWrapper {
     @ViewChild(ProductDetailsComponent, { static: true })
     public productDetailsComponent: ProductDetailsComponent;
+    public mockProduct$ = of(products[0]);
   }
 });

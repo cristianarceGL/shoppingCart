@@ -33,7 +33,7 @@ export class AuthService {
     });
   }
 
-  public async logIn(authenticate: Authenticate): Promise<any> {
+  public async logIn(authenticate: Authenticate): Promise<void | User> {
     return await this.afAuth.auth
       .signInWithEmailAndPassword(authenticate.email, authenticate.password)
       .then(user => user.user)

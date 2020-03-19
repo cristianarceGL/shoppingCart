@@ -1,8 +1,17 @@
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Component, EventEmitter, Output, OnInit, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  OnInit,
+  Input,
+  ViewChild,
+  ChangeDetectorRef,
+  AfterContentChecked,
+} from '@angular/core';
 
-import { MatStepper } from '@app/shared/material';
+import { MatStepper, StepperSelectionEvent } from '@app/shared/material';
 import { Product } from '@app/features/core/models/product.model';
 import { ShippingOptions } from '@app/features/core/common/enums/general.enum';
 import { ShippingSummary, BillingSummary, PaymentSummary } from '@app/features/core/models/summary.model';
@@ -46,7 +55,7 @@ import { ShippingSummary, BillingSummary, PaymentSummary } from '@app/features/c
   `,
   styles: [``],
 })
-export class CheckoutStepsComponent implements OnInit {
+export class CheckoutStepsComponent implements OnInit, AfterContentChecked {
   @Input() public products$: Observable<Product[]>;
   @Output() public selectedShippingOption = new EventEmitter<ShippingOptions>();
   @Output() public isCheckoutComplete = new EventEmitter<boolean>();
@@ -60,11 +69,13 @@ export class CheckoutStepsComponent implements OnInit {
   public checkoutStepsForm: FormGroup;
   public sameShippingBilling = false;
 
+  constructor(private cdref: ChangeDetectorRef) {}
+
   public moveStepperToIndex(index: number): void {
     this.checkoutStepper.selectedIndex = index;
   }
 
-  public selectionChange(value: any): void {
+  public selectionChange(value: StepperSelectionEvent): void {
     this.currentStepIndex.emit(value.selectedIndex);
   }
 
@@ -80,6 +91,10 @@ export class CheckoutStepsComponent implements OnInit {
         payment: new FormControl(null),
       }),
     });
+  }
+
+  public ngAfterContentChecked(): void {
+    this.cdref.detectChanges();
   }
 
   public setShippingAsBilling(value: boolean): void {

@@ -29,8 +29,8 @@
                 </td>
 
                 <td>
-                  {{shippingSummary.firstname}}<br />
-                  {{shippingSummary.lastname}}<br />
+                  {{shippingSummary.firstName}}<br />
+                  {{shippingSummary.lastName}}<br />
                   {{shippingSummary.email}}
                 </td>
               </tr>
@@ -79,7 +79,7 @@
 </div>
 
 <mat-card *ngIf="!previewInvoice" class="mat-card">
-  <mat-card-content class="mat-card-content">
+  <mat-card-content class="mat-card-content" data-cy="checkout-completed">
     <h3>Thank you for your Order</h3>
     <br />
     <h6>Order number is: {{ invoiceNumber }}</h6>

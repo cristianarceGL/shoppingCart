@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { RoutingStoreModule } from '@app/features/core/store/routing';
-import { AdminOrderComponent } from '@app/features/admin-checkout/admin-checkout.component';
+import { AdminCheckoutComponent } from '@app/features/admin-checkout/admin-checkout.component';
 import { AdminOrderRoutingModule } from '@app/features/admin-checkout/admin-checkout-routing.module';
 import { CheckoutStepsModule } from '@app/features/admin-checkout/checkout-steps/checkout-steps.module';
 import { StepSummaryModule } from '@app/features/admin-checkout/summaries/step-summary/step-summary.module';
@@ -28,6 +28,6 @@ const modules = [
 
 @NgModule({
   imports: [...modules],
-  declarations: [AdminOrderComponent],
+  declarations: [AdminCheckoutComponent],
 })
 export class AdminCheckoutModule {}

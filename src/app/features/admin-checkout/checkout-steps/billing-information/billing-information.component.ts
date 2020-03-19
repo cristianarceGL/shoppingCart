@@ -3,6 +3,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, ViewChild, SimpleCha
 
 import { MatCheckbox } from '@app/shared/shared.module';
 import { ShippingOptions } from '@app/features/core/common/enums/general.enum';
+import { BillingSummary, PaymentSummary } from '@app/features/core/models/summary.model';
 
 @Component({
   selector: 'sc-billing-information',
@@ -47,11 +48,11 @@ export class BillingInformationComponent implements OnChanges {
     this.sameShippingBilling = value;
   }
 
-  public setShippingSummary(billingSummary: {}): void {
+  public setShippingSummary(billingSummary: BillingSummary): void {
     this.billingSummary.emit(billingSummary);
   }
 
-  public setPaymentSummary(paymentSummary: {}): void {
+  public setPaymentSummary(paymentSummary: PaymentSummary): void {
     this.paymentSummary.emit(paymentSummary);
   }
 }

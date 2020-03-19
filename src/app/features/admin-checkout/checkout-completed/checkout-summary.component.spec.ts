@@ -1,54 +1,57 @@
-// import { of } from 'rxjs';
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { Component, ViewChild } from '@angular/core';
-// import { SharedModule } from '@app/shared/shared.module';
-// import { products } from '@app/mockdata/helpers/models-data';
-// import { CheckoutSummaryComponent } from '@app/features/admin-checkout/checkout-summary/checkout-summary.component';
+import { MaterialModule } from '@app/shared/material';
+import { CheckoutCompletedComponent } from './checkout-summary.component';
+import { mockStepSummary, mockPaymentSummary, products } from '@app/mockdata/data/models-data';
 
-// describe('ProductDetailsComponent', () => {
-//   let testHostComponent: TestHostComponent;
-//   let testHostFixture: ComponentFixture<TestHostComponent>;
+describe('CheckoutCompletedComponent', () => {
+  let component: TestCmpWrapper;
+  let fixture: ComponentFixture<TestCmpWrapper>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [CheckoutSummaryComponent, TestHostComponent],
-//       imports: [SharedModule],
-//     }).compileComponents();
-//   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [CheckoutCompletedComponent, TestCmpWrapper],
+      imports: [MaterialModule, FormsModule],
+    }).compileComponents();
+  }));
 
-//   beforeEach(() => {
-//     testHostFixture = TestBed.createComponent(TestHostComponent);
-//     testHostComponent = testHostFixture.componentInstance;
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestCmpWrapper);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should show the title in the first and third card', () => {
-//     testHostComponent.CheckoutSummaryComponent.products$ = of([products[0], products[1], products[2]]);
-//     testHostFixture.detectChanges();
+  it('should change the preview receipt to true', () => {
+    component.checkoutCompletedComponent.previewReceipt();
+    expect(component.checkoutCompletedComponent.previewInvoice).toEqual(true);
+  });
 
-//     const matCard = testHostFixture.nativeElement.querySelectorAll('mat-card-title');
-//     expect(matCard[0].innerText).toEqual(products[0].title);
-//     expect(matCard[2].innerText).toEqual(products[2].title);
-//   });
+  it('should get the invoice total', () => {
+    expect(component.checkoutCompletedComponent.getInvoiceTotal()).toEqual(1770);
+  });
 
-//   it('should listen for product emitted changes', () => {
-//     testHostComponent.CheckoutSummaryComponent.products$ = of([products[0], products[1], products[2]]);
-//     spyOn(testHostComponent.CheckoutSummaryComponent.productToShow, 'emit');
-//     testHostFixture.detectChanges();
+  @Component({
+    selector: `sc-component`,
+    template: `
+      <sc-checkout-completed
+        [shippingSummary]="shippingSummaryMock"
+        [billingSummary]="billingSummaryMock"
+        [paymentSummary]="paymentSummaryMock"
+        [products]="productsMock"
+        [shippingAmount]="shippingAmountMock"
+      ></sc-checkout-completed>
+    `,
+  })
+  class TestCmpWrapper {
+    @ViewChild(CheckoutCompletedComponent, { static: true })
+    public checkoutCompletedComponent: CheckoutCompletedComponent;
 
-//     testHostComponent.CheckoutSummaryComponent.redirectToDetails('123');
-
-//     expect(testHostComponent.CheckoutSummaryComponent.productToShow.emit).toHaveBeenCalled();
-//   });
-
-//   @Component({
-//     selector: `sc-component`,
-//     template: `
-//       <sc-product-list></sc-product-list>
-//     `,
-//   })
-//   class TestHostComponent {
-//     @ViewChild(CheckoutSummaryComponent, { static: true })
-//     public CheckoutSummaryComponent: CheckoutSummaryComponent;
-//   }
-// });
+    public shippingSummaryMock = mockStepSummary;
+    public billingSummaryMock = mockStepSummary;
+    public paymentSummaryMock = mockPaymentSummary;
+    public productsMock = [products[0], products[1], products[1]];
+    public shippingAmountMock = 0;
+  }
+});

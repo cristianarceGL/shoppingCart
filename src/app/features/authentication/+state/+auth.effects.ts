@@ -5,6 +5,7 @@ import { of, from, Observable } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, switchMap, map, tap } from 'rxjs/operators';
 
+import { User } from '@app/features/authentication/models/user';
 import { AuthService } from '@app/features/authentication/auth.service';
 import * as authActions from '@app/features/authentication/+state/+auth.actions';
 
@@ -17,8 +18,10 @@ export class AuthEffects {
       ofType(authActions.login),
       switchMap(data =>
         from(this.authService.logIn(data.authenticate)).pipe(
-          map(user =>
-            this.authService.isAuthenticated$ ? authActions.loginSuccess({ user }) : authActions.notAuthenticated()
+          map((user: void | User) =>
+            this.authService.isAuthenticated$ && user
+              ? authActions.loginSuccess({ user })
+              : authActions.notAuthenticated()
           ),
           catchError(errorMessage => of(authActions.loginFailure({ errorMessage })))
         )

@@ -1,0 +1,47 @@
+.customize+* .mat-menu-panel {
+  background: #373a3c;
+  margin-left: 18vw;
+  min-width: 20vw;
+  text-align: end;
+  color: white;
+  min-height: 10vh;
+}
+
+.customize+* .mat-menu-item {
+  min-height: 10vh;
+  color: white;
+  display: flex;
+}
+
+.menu-view {
+  background: white;
+  margin: 0;
+  height: 7vh;
+  width: auto;
+}
+
+.menu-labels {
+  text-align: left;
+  font-size: small;
+  margin: 0 5%;
+}
+
+.content {
+  padding: 2px auto;
+}
+
+.content div div {
+  margin: 2px 3px;
+}
+
+.button-space {
+  padding: 5%;
+}
+
+p {
+  color: white;
+}
+
+button {
+  text-align: right;
+}

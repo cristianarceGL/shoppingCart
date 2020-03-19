@@ -36,6 +36,8 @@ export {
   MatCheckbox,
 } from '@angular/material';
 
+export { StepperSelectionEvent } from '@angular/cdk/stepper';
+
 const modules = [
   FlexLayoutModule,
   MatInputModule,

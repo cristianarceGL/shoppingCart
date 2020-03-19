@@ -13,7 +13,7 @@ import { ShippingSummary, BillingSummary, PaymentSummary } from '@app/features/c
 @Component({
   selector: 'sc-admin-checkout',
   template: `
-    <div data-cy="checkouts-page">
+    <div data-cy="checkout-steps-page">
       <br />
       <sc-checkout-completed
         *ngIf="isCheckoutComplete"
@@ -85,7 +85,7 @@ import { ShippingSummary, BillingSummary, PaymentSummary } from '@app/features/c
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminOrderComponent implements OnInit {
+export class AdminCheckoutComponent implements OnInit {
   @ViewChild('checkoutSteps', { static: false }) checkoutStepsComponent: CheckoutStepsComponent;
 
   public checkoutItems: Product[];

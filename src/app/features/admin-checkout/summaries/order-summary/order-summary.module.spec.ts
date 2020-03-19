@@ -1,15 +1,15 @@
-// import { async, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
-// import { CheckoutSummaryModule } from '@app/features/admin-checkout/checkout-summary/checkout-summary.module';
+import { OrderSummaryModule } from './order-summary.module';
 
-// describe('CheckoutSummaryModule', () => {
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       imports: [CheckoutSummaryModule],
-//     }).compileComponents();
-//   }));
+describe('OrderSummaryModule', () => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [OrderSummaryModule],
+    }).compileComponents();
+  }));
 
-//   it('should create', () => {
-//     expect(CheckoutSummaryModule).toBeDefined();
-//   });
-// });
+  it('should create', () => {
+    expect(OrderSummaryModule).toBeDefined();
+  });
+});

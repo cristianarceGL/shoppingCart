@@ -18,7 +18,7 @@ import { PaymentSummary } from '@app/features/core/models/summary.model';
           matInput
           placeholder="Name on Card"
           [formControl]="nameOnCardControl"
-          data-cy="firstName"
+          data-cy="card-name"
           type="text"
           required
         />
@@ -36,7 +36,7 @@ import { PaymentSummary } from '@app/features/core/models/summary.model';
           matInput
           placeholder="Credit Card Number"
           [formControl]="creditCardNumberControl"
-          data-cy="firstName"
+          data-cy="card-number"
           type="text"
           required
         />
@@ -54,7 +54,7 @@ import { PaymentSummary } from '@app/features/core/models/summary.model';
           matInput
           placeholder="CVC Number"
           [formControl]="cvcNumberControl"
-          data-cy="firstName"
+          data-cy="card-cvc"
           type="text"
           required
         />
@@ -69,10 +69,10 @@ import { PaymentSummary } from '@app/features/core/models/summary.model';
       <br />
       <mat-form-field class="mat-form-field-md">
         <mat-label>Card Type</mat-label>
-        <mat-select [formControl]="cardTypeControl" required>
-          <mat-option value="Visa">Visa</mat-option>
-          <mat-option value="MasterCard">MasterCard</mat-option>
-          <mat-option value="AmericanExpress">American Express</mat-option>
+        <mat-select [formControl]="cardTypeControl" data-cy="card-type" required>
+          <mat-option value="Visa" data-cy="card-type-visa">Visa</mat-option>
+          <mat-option value="MasterCard" data-cy="card-type-mastercard">MasterCard</mat-option>
+          <mat-option value="AmericanExpress" data-cy="card-type-amex">American Express</mat-option>
         </mat-select>
         <mat-error *ngIf="cardTypeControl.hasError('required')">Please choose a card</mat-error>
       </mat-form-field>
@@ -81,9 +81,11 @@ import { PaymentSummary } from '@app/features/core/models/summary.model';
       <div fxLayout="row">
         <mat-form-field class="mat-form-field-sm mat-form-field-mr">
           <mat-label>Expiration Month</mat-label>
-          <mat-select [formControl]="expirationMonthControl" required>
+          <mat-select [formControl]="expirationMonthControl" data-cy="card-month" required>
             <mat-option *ngFor="let month of months" [value]="month">
-              {{ month }}
+              <div [attr.data-cy]="'card-month-' + month">
+                {{ month }}
+              </div>
             </mat-option>
           </mat-select>
           <mat-error *ngIf="expirationMonthControl.hasError('required')">Please choose a month</mat-error>
@@ -91,9 +93,11 @@ import { PaymentSummary } from '@app/features/core/models/summary.model';
         <br />
         <mat-form-field class="mat-form-field-sm">
           <mat-label>Expiration Year</mat-label>
-          <mat-select [formControl]="expirationYearControl" required>
+          <mat-select [formControl]="expirationYearControl" data-cy="card-year" required>
             <mat-option *ngFor="let year of years" [value]="year">
-              {{ year }}
+              <div [attr.data-cy]="'card-year-' + year">
+                {{ year }}
+              </div>
             </mat-option>
           </mat-select>
           <mat-error *ngIf="expirationYearControl.hasError('required')">Please choose a year</mat-error>
@@ -156,7 +160,7 @@ export class PaymentInformationComponent implements OnInit {
     );
   }
 
-  private buildSummary() {
+  private buildSummary(): void {
     const summary = {
       cardName: this.paymentFormParent.get('nameOnCard').value,
       cardNumber: '**' + this.paymentFormParent.get('creditCardNumber').value.slice(-4),

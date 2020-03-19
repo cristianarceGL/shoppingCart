@@ -7,22 +7,15 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AuthService } from './auth.service';
-
-const credentialsMock = {
-  email: 'shopping@gorilla.com',
-  password: '123456',
-};
-
-const userMock = {
-  uid: 'ABC123',
-  email: credentialsMock.email,
-};
+import { Authenticate, User } from './models';
+import { authenticate, user } from '@app/mockdata/data/models-data';
+import { MatSnackBarComponent, MaterialModule } from '@app/shared/shared.module';
 
 const fakeAuthState = new BehaviorSubject(null);
 
 const fakeSignInHandler = (email, password): Promise<any> => {
-  fakeAuthState.next(userMock);
-  return Promise.resolve(userMock);
+  fakeAuthState.next(user.user);
+  return Promise.resolve(user.user);
 };
 
 const fakeSignOutHandler = (): Promise<any> => {
@@ -49,19 +42,24 @@ describe('UserService', () => {
   let afAuth: AngularFireAuth;
   let isAuth$: Subscription;
   let isAuthRef: boolean;
+  let mockAuthentication: Authenticate;
+  let mockUser: User;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule, MaterialModule],
       providers: [
         AuthService,
         { provide: AngularFireAuth, useValue: angularFireAuthStub },
         { provide: Router, useClass: RouterStub },
+        MatSnackBarComponent,
       ],
     });
 
     service = TestBed.get(AuthService);
     afAuth = TestBed.get(AngularFireAuth);
+    mockAuthentication = authenticate.authenticate;
+    mockUser = user.user;
   });
 
   beforeEach(() => {
@@ -84,17 +82,17 @@ describe('UserService', () => {
   });
 
   it('should be authenticated after logging in', () => {
-    service.logIn(credentialsMock);
+    service.logIn(mockAuthentication);
 
     expect(afAuth.auth.signInWithEmailAndPassword).toHaveBeenCalledWith(
-      credentialsMock.email,
-      credentialsMock.password
+      mockAuthentication.email,
+      mockAuthentication.password
     );
     expect(isAuthRef).toBeTruthy();
   });
 
   it('should not be authenticated after logging out', () => {
-    fakeAuthState.next(userMock);
+    fakeAuthState.next(mockUser);
     expect(isAuthRef).toBe(true);
 
     service.logOut();
@@ -103,19 +101,21 @@ describe('UserService', () => {
   });
 
   it('should invoke it’s onError function', () => {
-    service.logIn(credentialsMock);
-    let user;
-    afAuth.authState.pipe(map(result => (result !== null ? result : null))).subscribe(stateUser => (user = stateUser));
-    expect(user).toEqual(userMock);
+    service.logIn(mockAuthentication);
+    let userToCompare;
+    afAuth.authState
+      .pipe(map(result => (result !== null ? result : null)))
+      .subscribe(stateUser => (userToCompare = stateUser));
+    expect(userToCompare).toEqual(mockUser);
     afAuth.authState.pipe(map(userState => userState !== null));
   });
 
   it('should check whether the user is authenticate = true', () => {
     let isUserAuthenticated = false;
 
-    service.logIn(userMock);
+    service.logIn(mockAuthentication);
     service.isAuthenticated$
-      .pipe(map(user => user !== null))
+      .pipe(map(userRes => userRes !== null))
       .subscribe(isAuthenticated => (isUserAuthenticated = isAuthenticated));
 
     expect(isUserAuthenticated).toBe(true);
@@ -124,9 +124,9 @@ describe('UserService', () => {
   it('should get the current user', () => {
     let currentUser = null;
 
-    service.logIn(userMock);
-    service.currentUser$.pipe(map(user => user)).subscribe(user => (currentUser = user));
+    service.logIn(mockAuthentication);
+    service.currentUser$.pipe(map(userRes => userRes)).subscribe(userSubs => (currentUser = userSubs));
 
-    expect(currentUser).toBe(userMock);
+    expect(currentUser).toBe(mockUser);
   });
 });

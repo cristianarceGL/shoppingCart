@@ -1,12 +1,22 @@
 import { user } from '@app/mockdata/data/models-data';
+import { User } from '@app/features/authentication/models';
 import * as authActions from '@app/features/authentication/+state/+auth.actions';
 import { authReducer, initialState } from '@app/features/authentication/+state/+auth.reducer';
-import { User } from '../models';
 
 describe('Auth Reducer', () => {
   describe('check the constructor', () => {
     it('should return a valid user object', () => {
       const result = new User('shoppingUserId', 'Shopping User', 'shopping@gorilla.com', '50688776655', 'TBD');
+      expect(result.email).toBe(user.user.email);
+    });
+
+    it('should return a valid user object empties', () => {
+      const result = new User('shoppingUserId', 'Shopping User', 'shopping@gorilla.com');
+      expect(result.email).toBe(user.user.email);
+    });
+
+    it('should return a valid user object nulls', () => {
+      const result = new User('shoppingUserId', 'Shopping User', 'shopping@gorilla.com', null, null);
       expect(result.email).toBe(user.user.email);
     });
   });

@@ -1,15 +1,14 @@
-// import { async, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { AdminOrderModule } from './admin-order.module';
 
-// import { AdminCheckoutModule } from '@app/features/admin-checkout/admin-checkout.module';
+describe('AdminOrderModule', () => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [AdminOrderModule],
+    }).compileComponents();
+  }));
 
-// describe('AdminCheckoutModule', () => {
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       imports: [AdminCheckoutModule],
-//     }).compileComponents();
-//   }));
-
-//   it('should create', () => {
-//     expect(AdminCheckoutModule).toBeDefined();
-//   });
-// });
+  it('should create', () => {
+    expect(AdminOrderModule).toBeDefined();
+  });
+});

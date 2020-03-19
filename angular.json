@@ -100,7 +100,17 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "codeCoverage": true
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "src/shared/directives/**",
+              "src/app/features/authentication/+state/**",
+              "src/app/features/admin-product/+state/**",
+              "src/app/features/admin-product/services/**",
+              "src/app/features/admin-order/+state/**",
+              "src/app/features/admin-checkout/checkout-steps/**",
+              "src/app/features/core/firebase/services/**",
+              "src/app/features/core/store/routing/**"
+            ]
           }
         },
         "lint": {

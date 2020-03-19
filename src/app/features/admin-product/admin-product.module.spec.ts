@@ -1,6 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
 
-import { AdminProductModule } from '@app/features/admin-product/admin-product.module';
+import { AdminProductModule } from './admin-product.module';
 
 describe('AdminProductModule', () => {
   beforeEach(async(() => {

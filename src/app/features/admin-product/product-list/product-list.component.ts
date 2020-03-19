@@ -16,6 +16,7 @@ import { SubscriptionService } from '@app/features/core/firebase/services/subscr
       gdRows="auto"
       gdAreas.lt-md="header"
       gdRows.lt-md="auto"
+      data-cy="product-list"
     >
       <div gdArea="header">
         <sc-carousel [slides]="slides | async"></sc-carousel>

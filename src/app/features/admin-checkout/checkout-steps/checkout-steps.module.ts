@@ -7,7 +7,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { PlaceOrderModule } from '@app/features/admin-checkout/checkout-steps/place-order/place-order.module';
 import { CheckoutStepsComponent } from '@app/features/admin-checkout/checkout-steps/checkout-steps.component';
 import { ShippingInformationModule } from '@app/features/admin-checkout/checkout-steps/shipping-information/shipping-information.module';
-import { BillilngInformationModule } from '@app/features/admin-checkout/checkout-steps/billing-information/billing-information.module';
+import { BillingInformationModule } from '@app/features/admin-checkout/checkout-steps/billing-information/billing-information.module';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { BillilngInformationModule } from '@app/features/admin-checkout/checkout
     SharedModule,
     RouterModule,
     ShippingInformationModule,
-    BillilngInformationModule,
+    BillingInformationModule,
     PlaceOrderModule,
   ],
   declarations: [CheckoutStepsComponent],

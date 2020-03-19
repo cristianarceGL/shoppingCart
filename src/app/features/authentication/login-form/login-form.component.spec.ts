@@ -1,24 +1,47 @@
-import { ReactiveFormsModule } from '@angular/forms';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MaterialModule } from '@app/shared/material';
-import { LoginFormComponent } from '@app/features/authentication/login-form/login-form.component';
+import { LoginFormComponent } from './login-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('Login Form', () => {
-  let fixture: ComponentFixture<LoginFormComponent>;
-  let component: LoginFormComponent;
+describe('LoginFormComponent', () => {
+  let component: TestCmpWrapper;
+  let fixture: ComponentFixture<TestCmpWrapper>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [LoginFormComponent, TestCmpWrapper],
+      imports: [MaterialModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MaterialModule],
-      declarations: [LoginFormComponent],
-    });
-
-    fixture = TestBed.createComponent(LoginFormComponent);
+    fixture = TestBed.createComponent(TestCmpWrapper);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should create the component', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should listen for loginFormSubmit emitted changes', () => {
+    spyOn(component.loginFormComponent.loginFormSubmit, 'emit');
+    fixture.detectChanges();
+    component.loginFormComponent.login();
+    expect(component.loginFormComponent.loginFormSubmit.emit).toHaveBeenCalled();
+  });
+
+  @Component({
+    selector: `sc-component`,
+    template: `
+      <sc-login-form></sc-login-form>
+    `,
+  })
+  class TestCmpWrapper {
+    @ViewChild(LoginFormComponent, { static: true })
+    public loginFormComponent: LoginFormComponent;
+  }
 });

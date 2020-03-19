@@ -6,7 +6,14 @@ import { Product } from '@app/features/core/models/product.model';
 @Component({
   selector: 'sc-product-details',
   template: `
-    <mat-card class="mat-card" fxFlex="100%" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center">
+    <mat-card
+      class="mat-card"
+      fxFlex="100%"
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="center center"
+      data-cy="product-details"
+    >
       <img mat-card-image [src]="selectedProduct.imgUrl" alt="Chocolate image" />
       <div class="displayed-item">
         <mat-card-header>
@@ -27,10 +34,18 @@ import { Product } from '@app/features/core/models/product.model';
               <mat-label><strong>Quantity</strong></mat-label>
             </div>
             <div>
-              <input type="text" class="text-area" [(ngModel)]="itemQuantity" maxlength="3" sc-number-only />
+              <input
+                data-cy="item-quantity"
+                type="text"
+                class="text-area"
+                [(ngModel)]="itemQuantity"
+                maxlength="3"
+                sc-number-only
+              />
             </div>
             <div class="content-actions" fxLayoutAlign="space-between center">
               <button
+                data-cy="add-to-cart"
                 mat-raised-button
                 color="primary"
                 [ngStyle]="{ 'background-color': productAdded === true ? '#373A3C' : '#0275D8' }"
@@ -94,7 +109,7 @@ import { Product } from '@app/features/core/models/product.model';
 export class ProductDetailsComponent implements OnInit {
   @Input() public product$: Observable<Product>;
   @Output() public backTo = new EventEmitter<string>();
-  @Output() public productInCart = new EventEmitter<any>();
+  @Output() public productInCart = new EventEmitter<Product>();
 
   public selectedProduct: Product;
   public productAdded = false;
@@ -113,7 +128,7 @@ export class ProductDetailsComponent implements OnInit {
   public toggleAddToCart(): void {
     if (+this.itemQuantity > 0) {
       this.productAdded = true;
-      this.productInCart.emit({ ...this.selectedProduct, quantity: this.itemQuantity });
+      this.productInCart.emit({ ...this.selectedProduct, quantity: +this.itemQuantity });
       this.itemQuantity = '';
       setTimeout(() => {
         if (this.changeDetector && !(this.changeDetector as ViewRef).destroyed) {

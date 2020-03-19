@@ -12,4 +12,4 @@ import { BillingInformationComponent } from '@app/features/admin-checkout/checko
   declarations: [BillingInformationComponent],
   exports: [BillingInformationComponent],
 })
-export class BillilngInformationModule {}
+export class BillingInformationModule {}

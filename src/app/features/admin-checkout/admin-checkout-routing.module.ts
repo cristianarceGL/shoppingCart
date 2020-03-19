@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminOrderComponent } from '@app/features/admin-checkout/admin-checkout.component';
+import { AdminCheckoutComponent } from '@app/features/admin-checkout/admin-checkout.component';
 
 export const routes: Routes = [
   {
@@ -9,7 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: AdminOrderComponent,
+        component: AdminCheckoutComponent,
       },
     ],
   },

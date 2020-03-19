@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sc-footer',
@@ -23,11 +23,4 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
     `,
   ],
 })
-export class FooterComponent {
-  @Input() public user: any;
-  @Output() public signOut = new EventEmitter<void>();
-
-  public logOut(): void {
-    this.signOut.emit();
-  }
-}
+export class FooterComponent {}

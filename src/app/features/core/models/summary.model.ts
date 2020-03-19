@@ -1,6 +1,6 @@
 export interface ShippingSummary {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   company?: string;
   addressLine1: string;
@@ -13,8 +13,8 @@ export interface ShippingSummary {
 }
 
 export interface BillingSummary {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   company?: string;
   addressLine1: string;

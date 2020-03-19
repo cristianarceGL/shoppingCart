@@ -1,54 +1,106 @@
-// import { of } from 'rxjs';
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, ViewChild } from '@angular/core';
+import { provideMockStore } from '@ngrx/store/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// import { Component, ViewChild } from '@angular/core';
-// import { SharedModule } from '@app/shared/shared.module';
-// import { products } from '@app/mockdata/helpers/models-data';
-// import { CheckoutSummaryComponent } from '@app/features/admin-checkout/checkout-summary/checkout-summary.component';
+import { MaterialModule } from '@app/shared/material';
+import { SharedModule } from '@app/shared/shared.module';
+import { CheckoutStepsComponent } from './checkout-steps.component';
+import { PlaceOrderModule } from './place-order/place-order.module';
+import { ShippingOptions } from '@app/features/core/common/enums/general.enum';
+import { BillingInformationModule } from './billing-information/billing-information.module';
+import { ShippingInformationModule } from './shipping-information/shipping-information.module';
+import { mockedState, products, mockStepSummary, mockPaymentSummary } from '@app/mockdata/data/models-data';
 
-// describe('ProductDetailsComponent', () => {
-//   let testHostComponent: TestHostComponent;
-//   let testHostFixture: ComponentFixture<TestHostComponent>;
+describe('CheckoutStepsComponent', () => {
+  let component: TestCmpWrapper;
+  let fixture: ComponentFixture<TestCmpWrapper>;
+  const initialState = mockedState;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [CheckoutSummaryComponent, TestHostComponent],
-//       imports: [SharedModule],
-//     }).compileComponents();
-//   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        RouterTestingModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        ShippingInformationModule,
+        BillingInformationModule,
+        PlaceOrderModule,
+      ],
+      declarations: [CheckoutStepsComponent, TestCmpWrapper],
+      providers: [provideMockStore({ initialState })],
+    });
+  }));
 
-//   beforeEach(() => {
-//     testHostFixture = TestBed.createComponent(TestHostComponent);
-//     testHostComponent = testHostFixture.componentInstance;
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestCmpWrapper);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should show the title in the first and third card', () => {
-//     testHostComponent.CheckoutSummaryComponent.products$ = of([products[0], products[1], products[2]]);
-//     testHostFixture.detectChanges();
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-//     const matCard = testHostFixture.nativeElement.querySelectorAll('mat-card-title');
-//     expect(matCard[0].innerText).toEqual(products[0].title);
-//     expect(matCard[2].innerText).toEqual(products[2].title);
-//   });
+  it('should set the shipping as billing', () => {
+    component.checkoutStepsComponent.setShippingAsBilling(false);
+    expect(component.checkoutStepsComponent.sameShippingBilling).toEqual(false);
+  });
 
-//   it('should listen for product emitted changes', () => {
-//     testHostComponent.CheckoutSummaryComponent.products$ = of([products[0], products[1], products[2]]);
-//     spyOn(testHostComponent.CheckoutSummaryComponent.productToShow, 'emit');
-//     testHostFixture.detectChanges();
+  it('should set the shipping summary', () => {
+    spyOn(component.checkoutStepsComponent.selectedShippingOption, 'emit');
+    fixture.detectChanges();
+    component.checkoutStepsComponent.setShippingOption(ShippingOptions.Free);
+    expect(component.checkoutStepsComponent.selectedShippingOption.emit).toHaveBeenCalled();
+  });
 
-//     testHostComponent.CheckoutSummaryComponent.redirectToDetails('123');
+  it('should set the checkout completed', () => {
+    spyOn(component.checkoutStepsComponent.isCheckoutComplete, 'emit');
+    fixture.detectChanges();
+    component.checkoutStepsComponent.setCheckoutCompleted(true);
+    expect(component.checkoutStepsComponent.isCheckoutComplete.emit).toHaveBeenCalled();
+  });
 
-//     expect(testHostComponent.CheckoutSummaryComponent.productToShow.emit).toHaveBeenCalled();
-//   });
+  it('should emit the shipping summary', () => {
+    spyOn(component.checkoutStepsComponent.shippingSummary, 'emit');
+    fixture.detectChanges();
+    component.checkoutStepsComponent.setShippingSummary(mockStepSummary);
+    expect(component.checkoutStepsComponent.shippingSummary.emit).toHaveBeenCalledWith(mockStepSummary);
+  });
 
-//   @Component({
-//     selector: `sc-component`,
-//     template: `
-//       <sc-product-list></sc-product-list>
-//     `,
-//   })
-//   class TestHostComponent {
-//     @ViewChild(CheckoutSummaryComponent, { static: true })
-//     public CheckoutSummaryComponent: CheckoutSummaryComponent;
-//   }
-// });
+  it('should emit the billing summary', () => {
+    spyOn(component.checkoutStepsComponent.billingSummary, 'emit');
+    fixture.detectChanges();
+    component.checkoutStepsComponent.setBillingSummary(mockStepSummary);
+    expect(component.checkoutStepsComponent.billingSummary.emit).toHaveBeenCalledWith(mockStepSummary);
+  });
+
+  it('should emit the payment summary', () => {
+    spyOn(component.checkoutStepsComponent.paymentSummary, 'emit');
+    fixture.detectChanges();
+    component.checkoutStepsComponent.setPaymentSummary(mockPaymentSummary);
+    expect(component.checkoutStepsComponent.paymentSummary.emit).toHaveBeenCalledWith(mockPaymentSummary);
+  });
+
+  @Component({
+    selector: `sc-component`,
+    template: `
+      <sc-checkout-steps [products$]="productsMock"></sc-checkout-steps>
+    `,
+  })
+  class TestCmpWrapper {
+    @ViewChild(CheckoutStepsComponent, { static: true })
+    public checkoutStepsComponent: CheckoutStepsComponent;
+
+    public productsMock = of([products[0], products[1], products[2]]);
+  }
+});

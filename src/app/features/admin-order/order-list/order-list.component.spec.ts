@@ -1,54 +1,61 @@
-// import { of } from 'rxjs';
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { Component, ViewChild } from '@angular/core';
-// import { SharedModule } from '@app/shared/shared.module';
-// import { products } from '@app/mockdata/helpers/models-data';
-// import { ProductListComponent } from '@app/features/admin-product/product-list/product-list.component';
+import { MaterialModule } from '@app/shared/material';
+import { products } from '@app/mockdata/data/models-data';
+import { provideMockStore } from '@ngrx/store/testing';
+import { OrderListComponent } from './order-list.component';
+import { By } from '@angular/platform-browser';
 
-// describe('ProductDetailsComponent', () => {
-//   let testHostComponent: TestHostComponent;
-//   let testHostFixture: ComponentFixture<TestHostComponent>;
+describe('OrderListComponent', () => {
+  let component: TestCmpWrapper;
+  let fixture: ComponentFixture<TestCmpWrapper>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ProductListComponent, TestHostComponent],
-//       imports: [SharedModule],
-//     }).compileComponents();
-//   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [OrderListComponent, TestCmpWrapper],
+      imports: [MaterialModule, FormsModule],
+    }).compileComponents();
+  }));
 
-//   beforeEach(() => {
-//     testHostFixture = TestBed.createComponent(TestHostComponent);
-//     testHostComponent = testHostFixture.componentInstance;
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestCmpWrapper);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should show the title in the first and third card', () => {
-//     testHostComponent.productListComponent.products$ = of([products[0], products[1], products[2]]);
-//     testHostFixture.detectChanges();
+  it('should listen for product to remove emitted changes', () => {
+    spyOn(component.orderListComponent.productToRemove, 'emit');
+    fixture.detectChanges();
+    component.orderListComponent.removeItem(products[0].id);
+    expect(component.orderListComponent.productToRemove.emit).toHaveBeenCalled();
+  });
 
-//     const matCard = testHostFixture.nativeElement.querySelectorAll('mat-card-title');
-//     expect(matCard[0].innerText).toEqual(products[0].title);
-//     expect(matCard[2].innerText).toEqual(products[2].title);
-//   });
+  it('should listen for update quantity (substract) emitted changes', () => {
+    spyOn(component.orderListComponent.productToUpdate, 'emit');
+    fixture.detectChanges();
+    component.orderListComponent.updateQuantity(products[0], 'substract');
+    expect(component.orderListComponent.productToUpdate.emit).toHaveBeenCalled();
+  });
 
-//   it('should listen for product emitted changes', () => {
-//     testHostComponent.productListComponent.products$ = of([products[0], products[1], products[2]]);
-//     spyOn(testHostComponent.productListComponent.productToShow, 'emit');
-//     testHostFixture.detectChanges();
+  it('should listen for update quantity (add) emitted changes', () => {
+    spyOn(component.orderListComponent.productToUpdate, 'emit');
+    fixture.detectChanges();
+    component.orderListComponent.updateQuantity(products[0], 'add');
+    expect(component.orderListComponent.productToUpdate.emit).toHaveBeenCalled();
+  });
 
-//     testHostComponent.productListComponent.redirectToDetails('123');
-
-//     expect(testHostComponent.productListComponent.productToShow.emit).toHaveBeenCalled();
-//   });
-
-//   @Component({
-//     selector: `sc-component`,
-//     template: `
-//       <sc-product-list></sc-product-list>
-//     `,
-//   })
-//   class TestHostComponent {
-//     @ViewChild(ProductListComponent, { static: true })
-//     public productListComponent: ProductListComponent;
-//   }
-// });
+  @Component({
+    selector: `sc-component`,
+    template: `
+      <sc-order-list [products$]="mockProducts$"></sc-order-list>
+    `,
+  })
+  class TestCmpWrapper {
+    @ViewChild(OrderListComponent, { static: true })
+    public orderListComponent: OrderListComponent;
+    public mockProducts$ = of([products[0], products[1], products[2]]);
+  }
+});

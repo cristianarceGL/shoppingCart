@@ -136,8 +136,8 @@ export class CheckoutInformationComponent implements OnInit, OnChanges {
 
   private buildSummary(): void {
     const summary = {
-      firstname: this.checkoutFormParent.get('firstname').value,
-      lastname: this.checkoutFormParent.get('lastname').value,
+      firstName: this.checkoutFormParent.get('firstname').value,
+      lastName: this.checkoutFormParent.get('lastname').value,
       email: this.checkoutFormParent.get('email').value,
       addressLine1: this.checkoutFormParent.get('addressLine1').value,
       country: this.checkoutFormParent.get('country').value.name,
@@ -153,11 +153,11 @@ export class CheckoutInformationComponent implements OnInit, OnChanges {
     this.paymentSummary.emit(event);
   }
 
-  public compareCountryItems(item1: any, item2: any): boolean {
-    return item1 && item2 && item1.name === item2.name;
+  public compareCountryItems(country1: Country, country2: Country): boolean {
+    return country1 && country2 && country1.name === country2.name;
   }
 
-  public compareStateItems(item1: any, item2: any): boolean {
-    return item1 && item2 && item1.region === item2.region;
+  public compareStateItems(region1: Region, region2: Region): boolean {
+    return region1 && region2 && region1.region === region2.region;
   }
 }

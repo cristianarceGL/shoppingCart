@@ -6,11 +6,13 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
+import { MaterialModule } from '@app/shared/material';
 import { environment } from '@enviroments/environment';
+import { MatSnackBarComponent } from '@app/shared/shared.module';
+import { authenticate, user } from '@app/mockdata/data/models-data';
 import { AuthService } from '@app/features/authentication/auth.service';
 import { AuthEffects } from '@app/features/authentication/+state/+auth.effects';
 import * as authActions from '@app/features/authentication/+state/+auth.actions';
-import { authenticate, user } from '@app/mockdata/data/models-data';
 
 describe('Auth Effects', () => {
   let effects: AuthEffects;
@@ -23,6 +25,7 @@ describe('Auth Effects', () => {
         RouterTestingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireDatabaseModule,
+        MaterialModule,
       ],
       providers: [
         AngularFireAuth,
@@ -32,6 +35,7 @@ describe('Auth Effects', () => {
         },
         AuthEffects,
         provideMockActions(() => actions),
+        MatSnackBarComponent,
       ],
     });
 
@@ -84,8 +88,9 @@ describe('Auth Effects', () => {
         RouterTestingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireDatabaseModule,
+        MaterialModule,
       ],
-      providers: [AngularFireAuth, AuthService, AuthEffects, provideMockActions(() => actions)],
+      providers: [AngularFireAuth, AuthService, AuthEffects, provideMockActions(() => actions), MatSnackBarComponent],
     });
 
     effects = TestBed.get(AuthEffects);

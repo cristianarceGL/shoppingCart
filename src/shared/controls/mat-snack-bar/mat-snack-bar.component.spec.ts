@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MaterialModule } from '@app/shared/material';
 import { MatSnackBarComponent } from './mat-snack-bar.component';
 
 describe('MatSnackBarComponent', () => {
@@ -9,6 +10,7 @@ describe('MatSnackBarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MatSnackBarComponent],
+      imports: [MaterialModule],
     }).compileComponents();
   }));
 
