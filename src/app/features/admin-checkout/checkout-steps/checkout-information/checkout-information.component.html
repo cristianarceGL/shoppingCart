@@ -1,0 +1,137 @@
+<form [formGroup]="checkoutFormParent">
+  <mat-form-field class="mat-form-field" class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="First Name" [formControl]="firstNameControl" [errorStateMatcher]="matcher"
+      data-cy="firstName" type="text" required>
+    <mat-error *ngIf="firstNameControl.hasError('required')">
+      First Name is required
+    </mat-error>
+    <mat-error *ngIf="firstNameControl.errors?.minlength">
+      First Name must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Last Name" [formControl]="lastNameControl" [errorStateMatcher]="matcher"
+      data-cy="lastName" type="text" required>
+    <mat-error *ngIf="lastNameControl.hasError('required')">
+      Last Name is required
+    </mat-error>
+    <mat-error *ngIf="lastNameControl.errors?.minlength">
+      Last Name must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Email" [formControl]="emailControl" [errorStateMatcher]="matcher" data-cy="email"
+      type="text" required>
+    <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailControl.hasError('required')">
+      Email is required
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [floatLabel]="true">
+    <input matInput placeholder="Company" [formControl]="companyControl" [errorStateMatcher]="matcher" data-cy="company"
+      type="text">
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Address Line 1" [formControl]="addressLine1Control" [errorStateMatcher]="matcher"
+      data-cy="addressLine1" type="text" required>
+    <mat-error *ngIf="addressLine1Control.hasError('required')">
+      Address Line 1 is required
+    </mat-error>
+    <mat-error *ngIf="addressLine1Control.errors?.minlength">
+      Address Line 1 must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [floatLabel]="true">
+    <input matInput placeholder="Address Line 2" [formControl]="addressLine2Control" [errorStateMatcher]="matcher"
+      data-cy="company" type="text">
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field">
+    <mat-label>Country</mat-label>
+    <mat-select #countrySelect [formControl]="countryControl" (selectionChange)="countryChanged($event.value)"
+      [compareWith]="compareCountryItems" required>
+      <mat-option *ngFor="let country of countries" [value]="country">
+        {{country.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="countryControl.hasError('required')">Please choose a country</mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field">
+    <mat-label>State</mat-label>
+    <mat-select #stateSelect [formControl]="regionControl" [compareWith]="compareStateItems" required>
+      <mat-option *ngFor="let region of regions" [value]="region">
+        {{region.region}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="regionControl.hasError('required')">Please choose a state</mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="City" [formControl]="cityControl" [errorStateMatcher]="matcher" data-cy="city"
+      type="text" required>
+    <mat-error *ngIf="cityControl.hasError('required')">
+      City is required
+    </mat-error>
+    <mat-error *ngIf="cityControl.errors?.minlength">
+      City must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Zip Code" [formControl]="zipCodeControl" [errorStateMatcher]="matcher"
+      data-cy="zipCode" type="text" required>
+    <mat-error *ngIf="zipCodeControl.hasError('required')">
+      Zip Code is required
+    </mat-error>
+    <mat-error *ngIf="zipCodeControl.errors?.minlength">
+      Zip Code must be {{zipCodeLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Phone" [formControl]="phoneControl" [errorStateMatcher]="matcher" data-cy="phone"
+      type="tel" required>
+    <mat-error *ngIf="phoneControl.hasError('required')">
+      Phone is required
+    </mat-error>
+    <mat-error *ngIf="zipCodeControl.errors?.minlength">
+      Phone must be at least {{phoneMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <ng-content select="[shippingBilling]"></ng-content>
+  <ng-content select="[selectShipping]"></ng-content>
+</form>
+<sc-payment-information *ngIf="currentStep === 'billing'" [checkoutStepsForm]="checkoutStepsForm"
+  (paymentSummary)="setPaymentSummary($event)">
+</sc-payment-information>
+<br>
+<div *ngIf="currentStep === 'shipping'" fxLayout="row" fxLayoutGap="32px">
+  <button mat-raised-button matStepperNext color="primary" (click)="informationSubmitted()"
+    [disabled]="!checkoutFormParent.valid">Continue to Billing</button>
+</div>
+<div *ngIf="currentStep === 'billing'" fxLayout="row" fxLayoutGap="32px">
+  <button type="button" mat-raised-button matStepperPrevious color="primary">Back</button>
+  <br>
+  <button type="button" mat-raised-button matStepperNext color="primary" (click)="informationSubmitted()"
+    [disabled]="!checkoutStepsForm.valid">Continue</button>
+</div>

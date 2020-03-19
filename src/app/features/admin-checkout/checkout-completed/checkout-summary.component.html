@@ -1,0 +1,91 @@
+<div *ngIf="previewInvoice" class="preview-invoice">
+  <div id="print-section">
+    <div class="invoice-box">
+      <table cellpadding="0" cellspacing="0">
+        <tr class="top">
+          <td colspan="2">
+            <table>
+              <tr>
+                <td class="title">
+                  <img src="assets/GL-Logo.png" style="width:50%; max-width:150px;" />
+                </td>
+                <td>
+                  Invoice #: {{invoiceNumber}}<br />
+                  Created: {{purchaseDate | date:'dd-MM-yyyy'}}<br />
+                  Due: {{dueDate | date:'dd-MM-yyyy'}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="information">
+          <td colspan="2">
+            <table>
+              <tr>
+                <td>
+                  {{shippingSummary.addressLine1}}<br />
+                  {{shippingSummary.country}}<br />
+                  {{shippingSummary.region}}, {{shippingSummary.city}}, {{shippingSummary.zipCode}}
+                </td>
+
+                <td>
+                  {{shippingSummary.firstname}}<br />
+                  {{shippingSummary.lastname}}<br />
+                  {{shippingSummary.email}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="heading">
+          <td>Payment Method</td>
+          <td>Credit Card #</td>
+        </tr>
+        <tr class="details">
+          <td>{{paymentSummary.cardType}}</td>
+          <td>{{paymentSummary.cardNumber}}</td>
+        </tr>
+        <tr class="heading">
+          <td>Item</td>
+          <td>Price</td>
+        </tr>
+        <tr class="details" *ngFor="let product of products">
+          <td>
+            {{product.title}}({{product.quantity}} x {{product.price | currency}})
+          </td>
+          <td>
+            {{product.quantity * product.price | currency}}
+          </td>
+        </tr>
+        <tr class="details">
+          <td>Shipping Amount</td>
+          <td>{{shippingAmount | currency}}</td>
+        </tr>
+        <tr class="details">
+          <td>Taxes</td>
+          <td>{{0 | currency}}</td>
+        </tr>
+        <tr class="total">
+          <td></td>
+          <td>
+            Total: {{getInvoiceTotal() | currency}}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <button mat-raised-button class="preview-print" color="primary" printSectionId="print-section" ngxPrint>Print
+    Receipt</button>
+</div>
+
+<mat-card *ngIf="!previewInvoice" class="mat-card">
+  <mat-card-content class="mat-card-content">
+    <h3>Thank you for your Order</h3>
+    <br />
+    <h6>Order number is: {{ invoiceNumber }}</h6>
+    <br />
+    <h6>You will recieve an email confirmation shortly at {{ billingSummary.email }}</h6>
+    <br />
+    <button mat-raised-button color="primary" (click)="previewReceipt()">Preview Receipt</button>
+  </mat-card-content>
+</mat-card>
