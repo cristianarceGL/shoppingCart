@@ -1,7 +1,8 @@
 import { By } from '@angular/platform-browser';
-import { NumberOnlyDirective } from './number-only.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+
+import { NumberOnlyDirective } from './number-only.directive';
 
 @Component({
   template: `

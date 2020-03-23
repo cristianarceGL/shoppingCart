@@ -14,6 +14,11 @@ import {
   MatProgressBarModule,
   MatSnackBarModule,
   MatTooltipModule,
+  MatMenuModule,
+  MatStepperModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatRadioModule,
 } from '@angular/material';
 
 export {
@@ -25,7 +30,13 @@ export {
   MatPaginator,
   MatSnackBarConfig,
   MatSnackBar,
+  MatRadioChange,
+  MatStepper,
+  MatSelect,
+  MatCheckbox,
 } from '@angular/material';
+
+export { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 const modules = [
   FlexLayoutModule,
@@ -41,6 +52,11 @@ const modules = [
   MatProgressBarModule,
   MatSnackBarModule,
   MatTooltipModule,
+  MatMenuModule,
+  MatStepperModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatRadioModule,
 ];
 
 @NgModule({

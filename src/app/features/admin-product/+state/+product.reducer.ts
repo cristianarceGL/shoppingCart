@@ -27,7 +27,7 @@ export const adapterCarousel: EntityAdapter<Slide> = createEntityAdapter<Slide>(
 const productInitialState: ProductState = adapterProduct.getInitialState({ total: 0 });
 const carouselInitialState: CarouselProductState = adapterCarousel.getInitialState({ total: 0 });
 
-const initialState = {
+export const initialState = {
   msg: 'Multiple entities in same state: Product & Carousel',
   products: productInitialState,
   carousel: carouselInitialState,

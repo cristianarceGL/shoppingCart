@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '@app/shared/material/material.module';
 import { ControlsModule } from '@app/shared/controls/controls.module';
-import { NumberOnlyDirective } from './directives/number-only.directive';
+import { NumberOnlyDirective } from '@app/shared/directives/number-only.directive';
 
-export * from './material/material.module';
+export * from '@app/shared/material/material.module';
+export * from '@app/shared/controls/controls.module';
 
 const toExport = [CommonModule, ControlsModule, MaterialModule];
 

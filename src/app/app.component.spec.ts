@@ -3,16 +3,20 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
 import { AppComponent } from '@app/app.component';
-import { authReducer } from '@app/features/auth/+state/+auth.reducer';
 import { LayoutModule } from '@app/features/core/layout/layout.module';
+import { initialReducerMap, getInitialState, metaReducers } from '@app/features/global-state/app.state';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, LayoutModule, StoreModule.forRoot({ auth: authReducer })],
+      imports: [
+        RouterTestingModule,
+        LayoutModule,
+        StoreModule.forRoot(initialReducerMap, { initialState: getInitialState, metaReducers }),
+      ],
       declarations: [AppComponent],
     }).compileComponents();
 

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '@app/shared/material/material.module';
 import { CommonModule } from '@angular/common';
-import { CarouselComponent } from './carousel.component';
-export { CarouselComponent };
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MaterialModule } from '@app/shared/material/material.module';
+import { CarouselComponent } from '@app/shared/controls/carousel/carousel.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],

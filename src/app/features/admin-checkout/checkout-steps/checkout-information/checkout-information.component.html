@@ -1,0 +1,142 @@
+<form [formGroup]="checkoutFormParent" [attr.data-cy]="currentStep + '-form'">
+  <mat-form-field class="mat-form-field" class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="First Name" [formControl]="firstNameControl" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-firstName'" type="text" required>
+    <mat-error *ngIf="firstNameControl.hasError('required')">
+      First Name is required
+    </mat-error>
+    <mat-error *ngIf="firstNameControl.errors?.minlength">
+      First Name must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Last Name" [formControl]="lastNameControl" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-lastName'" type="text" required>
+    <mat-error *ngIf="lastNameControl.hasError('required')">
+      Last Name is required
+    </mat-error>
+    <mat-error *ngIf="lastNameControl.errors?.minlength">
+      Last Name must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Email" [formControl]="emailControl" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-email'" type="text" required>
+    <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailControl.hasError('required')">
+      Email is required
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [floatLabel]="true">
+    <input matInput placeholder="Company" [formControl]="companyControl" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-company'" type="text">
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Address Line 1" [formControl]="addressLine1Control" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-addressLine1'" type="text" required>
+    <mat-error *ngIf="addressLine1Control.hasError('required')">
+      Address Line 1 is required
+    </mat-error>
+    <mat-error *ngIf="addressLine1Control.errors?.minlength">
+      Address Line 1 must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [floatLabel]="true">
+    <input matInput placeholder="Address Line 2" [formControl]="addressLine2Control" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-addressLine2'" type="text">
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field">
+    <mat-label>Country</mat-label>
+    <mat-select #countrySelect [formControl]="countryControl" (selectionChange)="countryChanged($event.value)"
+      [compareWith]="compareCountryItems" [attr.data-cy]="currentStep + '-country'" required>
+      <mat-option *ngFor="let country of countries; let i = index" [value]="country">
+        <div [attr.data-cy]="currentStep + '-country-' + i">
+          {{country.name}}
+        </div>
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="countryControl.hasError('required')">Please choose a country</mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field">
+    <mat-label>State</mat-label>
+    <mat-select #stateSelect [formControl]="regionControl" [compareWith]="compareStateItems"
+      [attr.data-cy]="currentStep + '-region'" required>
+      <mat-option *ngFor="let region of regions; let i = index" [value]="region">
+        <div [attr.data-cy]="currentStep + '-region-' + i">
+          {{region.region}}
+        </div>
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="regionControl.hasError('required')">Please choose a state</mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="City" [formControl]="cityControl" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-city'" type="text" required>
+    <mat-error *ngIf="cityControl.hasError('required')">
+      City is required
+    </mat-error>
+    <mat-error *ngIf="cityControl.errors?.minlength">
+      City must be at least {{textMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Zip Code" [formControl]="zipCodeControl" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-zipCode'" type="text" required>
+    <mat-error *ngIf="zipCodeControl.hasError('required')">
+      Zip Code is required
+    </mat-error>
+    <mat-error *ngIf="zipCodeControl.errors?.minlength">
+      Zip Code must be {{zipCodeLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
+    <input matInput placeholder="Phone" [formControl]="phoneControl" [errorStateMatcher]="matcher"
+      [attr.data-cy]="currentStep + '-phone'" type="tel" required>
+    <mat-error *ngIf="phoneControl.hasError('required')">
+      Phone is required
+    </mat-error>
+    <mat-error *ngIf="zipCodeControl.errors?.minlength">
+      Phone must be at least {{phoneMinLength}} characters long
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <ng-content select="[shippingBilling]"></ng-content>
+  <ng-content select="[selectShipping]"></ng-content>
+</form>
+<sc-payment-information *ngIf="currentStep === 'billing'" [checkoutStepsForm]="checkoutStepsForm"
+  (paymentSummary)="setPaymentSummary($event)">
+</sc-payment-information>
+<br>
+<div *ngIf="currentStep === 'shipping'" fxLayout="row" fxLayoutGap="32px">
+  <button mat-raised-button matStepperNext color="primary" (click)="informationSubmitted()"
+    [disabled]="!checkoutFormParent.valid" [attr.data-cy]="currentStep + '-continue-to'">Continue to Billing</button>
+</div>
+<div *ngIf="currentStep === 'billing'" fxLayout="row" fxLayoutGap="32px">
+  <button type="button" mat-raised-button matStepperPrevious color="primary">Back</button>
+  <br>
+  <button type="button" mat-raised-button matStepperNext color="primary" (click)="informationSubmitted()"
+    [disabled]="!checkoutStepsForm.valid" [attr.data-cy]="currentStep + '-continue-to'">Continue</button>
+</div>
