@@ -1,6 +1,9 @@
-export interface FirebaseResponse {
-  key: string;
+export interface FirestoreResponse {
+  type: string;
   payload: any;
-  prevKey: any;
-  type: any;
+}
+
+export interface FirestorageResponse {
+  id: string;
+  src: string;
 }

@@ -4,13 +4,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AuthModule } from '@app/features/auth';
 import { AppComponent } from '@app/app.component';
 import { envModules } from '@enviroments/environment';
+import { AuthModule } from '@app/features/authentication';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { LayoutModule } from '@app/features/core/layout/layout.module';
-import { NotificationModule } from '@app/features/core/notifications/notification.module';
 import { RoutingStoreModule } from '@app/features/core/store/routing/routing-store.module';
+import { initialReducerMap, getInitialState, metaReducers } from '@app/features/global-state/app.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,9 +20,8 @@ import { RoutingStoreModule } from '@app/features/core/store/routing/routing-sto
     AppRoutingModule,
     AuthModule,
     LayoutModule,
-    NotificationModule,
     RoutingStoreModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(initialReducerMap, { initialState: getInitialState, metaReducers }),
     EffectsModule.forRoot([]),
     envModules,
   ],

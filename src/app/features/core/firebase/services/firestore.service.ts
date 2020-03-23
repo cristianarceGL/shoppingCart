@@ -1,10 +1,8 @@
 import { Observable } from 'rxjs';
-import { Inject, Injectable } from '@angular/core';
-import { AngularFirestore } from '@app/features/core/firebase/firebase.module';
+import { Injectable } from '@angular/core';
 
+import { AngularFirestore } from '@app/features/core/firebase/firebase.module';
 import { SubscriptionType } from '@app/features/core/common/enums/firebase.enum';
-import { stringify } from 'querystring';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +12,7 @@ export class FirebaseFirestoreService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  public getObject$(id: string): any {
+  public getObject$(id: string): Observable<any> {
     return this.firestore.doc(`${this.basePath}/${id}`).snapshotChanges();
   }
 
@@ -38,13 +36,5 @@ export class FirebaseFirestoreService {
 
   public deleteObjectBulk(baseUrl: string): void {
     this.firestore.doc(`${baseUrl}`).delete();
-  }
-
-  public getActionToDispatch(expression: string): string {
-    let result = '';
-    result = !result && expression === 'added' ? '[Product/API] Add Product' : result;
-    result = !result && expression === 'child_changed' ? '[Product/API] Update Product' : result;
-    result = !result && expression === 'child_removed' ? '[Product/API] Delete Product' : result;
-    return result;
   }
 }

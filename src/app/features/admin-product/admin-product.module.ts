@@ -4,14 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { MaterialModule } from '@app/shared/shared.module';
-import { ControlsModule } from '@app/shared/controls/controls.module';
-import { AdminProductRoutingModule } from './admin-product-routing.module';
-import { AdminProductComponent } from './admin-product.component';
-import { RoutingStoreModule } from '../core/store/routing';
-import { ProductListModule } from './product-list/product-list.module';
-import { ProductStoreModule } from './+state';
-import { ProductDetailsModule } from './product-details/product-details.module';
+import { RoutingStoreModule } from '@app/features/core/store/routing';
+import { ProductStoreModule } from '@app/features/admin-product/+state';
+import { AdminOrderModule } from '@app/features/admin-order/admin-order.module';
+import { AdminProductComponent } from '@app/features/admin-product/admin-product.component';
+import { ProductListModule } from '@app/features/admin-product/product-list/product-list.module';
+import { AdminProductRoutingModule } from '@app/features/admin-product/admin-product-routing.module';
+import { ProductDetailsModule } from '@app/features/admin-product/product-details/product-details.module';
 
 const modules = [
   CommonModule,
@@ -19,13 +18,12 @@ const modules = [
   ReactiveFormsModule,
   ProductStoreModule,
   SharedModule,
-  MaterialModule,
   RouterModule,
   AdminProductRoutingModule,
   ProductListModule,
   ProductDetailsModule,
-  ControlsModule,
   RoutingStoreModule,
+  AdminOrderModule,
 ];
 
 @NgModule({

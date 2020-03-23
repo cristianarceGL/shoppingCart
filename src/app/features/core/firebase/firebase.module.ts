@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
@@ -13,6 +13,7 @@ import {
 
 import { environment } from '@enviroments/environment';
 
+export { AngularFireAuth };
 export { AngularFirestore };
 export { AngularFireStorage };
 export { AngularFireDatabase };

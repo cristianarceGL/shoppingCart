@@ -8,3 +8,19 @@
 $primary-values: map-get($primary-theme, primary);
 $accent-values: map-get($primary-theme, accent);
 $warning-values: map-get($primary-theme, warn);
+
+.mat-form-field {
+  width: 55%;
+
+  &-sm {
+    width: 15%;
+  }
+
+  &-md {
+    width: 35%;
+  }
+
+  &-mr {
+    margin-right: 5%;
+  }
+}

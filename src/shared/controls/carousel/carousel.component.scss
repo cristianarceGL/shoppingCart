@@ -1,7 +1,6 @@
 // =========================
 // Carousel
 // =========================
-
 :host {
   flex: 1;
 }
@@ -12,6 +11,7 @@
   width: 100%;
   overflow: hidden;
   border-radius: 0.5em;
+  background-color: rgb(40, 43, 52);
 }
 
 img {
@@ -90,7 +90,7 @@ img {
   }
 }
 
-.testing {
+.resizeImg {
   margin-top: 2%;
 }
 
@@ -112,7 +112,7 @@ img {
 }
 
 @media screen and (min-width: 769px) {
-  .testing {
+  .resizeImg {
     width: 250px;
     height: 55vh;
     top: 0vh;

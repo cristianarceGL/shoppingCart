@@ -1,18 +1,35 @@
 import { Store, select } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { DisplayView } from '../core/common/enums/general.enum';
-import { Product } from '../core/models/product.model';
-import { ProductState } from './+state/+product.reducer';
-import { ProductActions, ProductSelectors } from '@app/features/admin-product/+state';
-import { Slide } from '../core/models/slide.model';
 import { LocationStrategy } from '@angular/common';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+
+import { Slide } from '@app/features/core/models/slide.model';
+import { OrderActions } from '@app/features/admin-order/+state';
+import { Product } from '@app/features/core/models/product.model';
+import { ApplicationState } from '@app/features/global-state/app.state';
+import { DisplayView } from '@app/features/core/common/enums/general.enum';
+import { ProductActions, ProductSelectors } from '@app/features/admin-product/+state';
 
 @Component({
   selector: 'sc-admin-product',
-  templateUrl: './admin-product.component.html',
-  styleUrls: ['./admin-product.component.scss'],
+  template: `
+    <div data-cy="products-page">
+      <sc-product-list
+        *ngIf="currentView == DisplayView.List && products$"
+        [products$]="products$"
+        [slides]="slides$"
+        (productToShow)="showItem($event)"
+      >
+      </sc-product-list>
+      <sc-product-details
+        *ngIf="currentView == DisplayView.Item && productSelected$"
+        [product$]="productSelected$"
+        (backTo)="showList()"
+        (productInCart)="addToCart($event)"
+      >
+      </sc-product-details>
+    </div>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminProductComponent implements OnInit, OnDestroy {
@@ -27,7 +44,7 @@ export class AdminProductComponent implements OnInit, OnDestroy {
   public slides$: Observable<Slide[] | null>;
   public productSelected$: Observable<Product | null>;
 
-  constructor(private store: Store<ProductState>, private location: LocationStrategy) {
+  constructor(private applicationState: Store<ApplicationState>, private location: LocationStrategy) {
     // preventing back button in browser
     history.pushState(null, null, window.location.href);
     this.location.onPopState(() => {
@@ -36,10 +53,10 @@ export class AdminProductComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.products$ = this.store.pipe(select(ProductSelectors.selectAllProducts));
-    this.slides$ = this.store.pipe(select(ProductSelectors.selectAllCarousel));
-    this.store.dispatch(ProductActions.loadProducts());
-    this.store.dispatch(ProductActions.loadCarouselProducts());
+    this.products$ = this.applicationState.pipe(select(ProductSelectors.selectAllProducts));
+    this.slides$ = this.applicationState.pipe(select(ProductSelectors.selectAllCarousel));
+    this.applicationState.dispatch(ProductActions.loadProducts());
+    this.applicationState.dispatch(ProductActions.loadCarouselProducts());
   }
 
   public ngOnDestroy(): void {
@@ -47,7 +64,7 @@ export class AdminProductComponent implements OnInit, OnDestroy {
   }
 
   public showItem(productId: string): void {
-    this.productSelected$ = this.store.pipe(select(ProductSelectors.getProductSelected, { productId }));
+    this.productSelected$ = this.applicationState.pipe(select(ProductSelectors.getProductSelected, { productId }));
     this.subscripter();
     this.currentView = DisplayView.Item;
     this.currentProductId = productId;
@@ -63,7 +80,7 @@ export class AdminProductComponent implements OnInit, OnDestroy {
     this.currentView = DisplayView.List;
   }
 
-  public addToCart(): void {
-    // this.productSelected$ = this.store.pipe(select(ProductSelectors.getProductSelected, { productId }));
+  public addToCart(product: Product): void {
+    this.applicationState.dispatch(OrderActions.addToOrders({ product }));
   }
 }

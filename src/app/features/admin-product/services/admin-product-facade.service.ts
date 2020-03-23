@@ -1,38 +1,31 @@
-import { Observable, of, from } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { Observable, from } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { map, take, tap, mergeMap, takeUntil } from 'rxjs/operators';
-import { FirebaseResponse } from '@app/features/core/firebase/models/firebase.response.model';
+import { map, mergeMap, takeUntil } from 'rxjs/operators';
 
-import { NotificationService } from '@app/features/core/notifications/notification.service';
-import { FeaturesFacadeService } from '@app/features/core/firebase/services/features-facade.service';
+import { SubscriptionService } from '@app/features/core/firebase/services/subscription.service';
 import { FirebaseFirestoreService } from '@app/features/core/firebase/services/firestore.service';
 import { FirebaseFirestorageService } from '@app/features/core/firebase/services/firestorage.service';
-import { SubscriptionService } from '@app/features/core/firebase/services/subscription.service';
+import { FirestoreResponse, FirestorageResponse } from '@app/features/core/firebase/models/firebase.response.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminProductFacadeService extends FeaturesFacadeService {
+export class AdminProductFacadeService {
   constructor(
-    public notificationService: NotificationService,
     public firestoreService: FirebaseFirestoreService,
     public firestorageService: FirebaseFirestorageService,
     private subscriptionService: SubscriptionService
-  ) {
-    super(notificationService);
-  }
+  ) {}
 
   public getProducts(): Observable<Action> {
     return this.firestoreService.getObjects$().pipe(
       takeUntil(this.subscriptionService.unsubscribe$),
       mergeMap(item => item),
-      map((firebaseResult: any) => {
-        return {
-          type: this.firestoreService.getActionToDispatch(firebaseResult.type),
-          product: { id: firebaseResult.payload.doc.key, ...firebaseResult.payload.doc.data() },
-        };
-      })
+      map((firebaseResult: FirestoreResponse) => ({
+        type: this.getActionToDispatch(firebaseResult.type),
+        product: { id: firebaseResult.payload.doc.key, ...firebaseResult.payload.doc.data() },
+      }))
     );
   }
 
@@ -40,13 +33,18 @@ export class AdminProductFacadeService extends FeaturesFacadeService {
     return from(this.firestorageService.getImageList$()).pipe(
       takeUntil(this.subscriptionService.unsubscribe$),
       mergeMap(item => item),
-
-      map((firebaseResult: any) => {
-        return {
-          type: '[Product/API] Add Carousel Product',
-          item: { id: firebaseResult.id, src: firebaseResult.src },
-        };
-      })
+      map((firebaseResult: FirestorageResponse) => ({
+        type: '[Product/API] Add Carousel Product',
+        item: { id: firebaseResult.id, src: firebaseResult.src },
+      }))
     );
+  }
+
+  private getActionToDispatch(expression: string): string {
+    let result = '';
+    result = !result && expression === 'added' ? '[Product/API] Add Product' : result;
+    result = !result && expression === 'child_changed' ? '[Product/API] Update Product' : result;
+    result = !result && expression === 'child_removed' ? '[Product/API] Delete Product' : result;
+    return result;
   }
 }
