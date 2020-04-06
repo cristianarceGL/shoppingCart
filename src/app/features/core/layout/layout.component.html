@@ -1,0 +1,5 @@
+<sc-header [user]="user$ | async" [cartTotal]="cartTotal$ | async" [cartItems]="cartItems$ | async"
+  (checkoutCart)="checkoutCart()" (signOut)="logOut()"></sc-header>
+<br />
+<ng-content></ng-content>
+<sc-footer></sc-footer>

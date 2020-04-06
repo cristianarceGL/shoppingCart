@@ -2,14 +2,13 @@ import { Store } from '@ngrx/store';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { Authenticate } from '@app/features/authentication/models';
-import { login } from '@app/features/authentication/+state/+auth.actions';
-import { AuthState } from '@app/features/authentication/+state/+auth.reducer';
+import { login } from '@app/features/authentication/state/auth.actions';
+import { AuthState } from '@app/features/authentication/state/auth.reducer';
 
 @Component({
   selector: 'sc-auth',
-  template: `
-    <sc-login-form (loginFormSubmit)="login($event)" data-cy="auth-page"></sc-login-form>
-  `,
+  templateUrl: `./auth.component.html`,
+  styleUrls: [`./auth.component.scss`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent {
