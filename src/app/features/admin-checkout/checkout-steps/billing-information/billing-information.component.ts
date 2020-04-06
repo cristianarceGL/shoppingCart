@@ -7,22 +7,8 @@ import { BillingSummary, PaymentSummary } from '@app/features/core/models/summar
 
 @Component({
   selector: 'sc-billing-information',
-  template: `
-    <mat-checkbox #useShipping (change)="setShippingAsBilling($event.checked)">
-      Use Shipping Address for Billing
-    </mat-checkbox>
-    <sc-checkout-information
-      [checkoutStepsForm]="checkoutStepsForm"
-      currentStep="billing"
-      [sameShippingBilling]="sameShippingBilling"
-      (isShippingEqualsBilling)="setShippingAsBilling($event.checked)"
-      (shippingSummary)="setShippingSummary($event)"
-      (paymentSummary)="setPaymentSummary($event)"
-    >
-    </sc-checkout-information>
-    <br />
-  `,
-  styles: [``],
+  templateUrl: './billing-information.component.html',
+  styleUrls: ['./billing-information.component.scss'],
 })
 export class BillingInformationComponent implements OnChanges {
   @Input() public checkoutStepsForm: FormGroup;

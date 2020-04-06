@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { RoutingStoreModule } from '@app/features/core/store/routing';
-import { ProductStoreModule } from '@app/features/admin-product/+state';
+import { ProductStoreModule } from '@app/features/admin-product/state';
 import { AdminOrderModule } from '@app/features/admin-order/admin-order.module';
 import { AdminProductComponent } from '@app/features/admin-product/admin-product.component';
 import { ProductListModule } from '@app/features/admin-product/product-list/product-list.module';
@@ -22,7 +21,6 @@ const modules = [
   AdminProductRoutingModule,
   ProductListModule,
   ProductDetailsModule,
-  RoutingStoreModule,
   AdminOrderModule,
 ];
 

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { User, Authenticate } from '@app/features/authentication/models';
-import { MatSnackBarComponent } from '@app/shared/controls/controls.module';
+import { SnackBarComponent } from '@app/shared/controls/controls.module';
 import { SubscriptionService } from '@app/features/core/firebase/services/subscription.service';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     public router: Router,
     private subscriptionService: SubscriptionService,
-    private snackBar: MatSnackBarComponent
+    private snackBar: SnackBarComponent
   ) {
     this.afAuth.authState.pipe(takeUntil(this.subscriptionService.unsubscribe$)).subscribe(user => {
       if (user === null) {

@@ -1,10 +1,10 @@
 import { storeReset } from 'ngrx-store-reset';
 import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 
-import * as authActions from '@app/features/authentication/+state/+auth.actions';
-import * as orderReducer from '@app/features/admin-order/+state/+order.reducer';
-import * as authReducer from '@app/features/authentication/+state/+auth.reducer';
-import * as productReducer from '@app/features/admin-product/+state/+product.reducer';
+import * as authActions from '@app/features/authentication/state/auth.actions';
+import * as orderReducer from '@app/features/admin-order/state/order.reducer';
+import * as authReducer from '@app/features/authentication/state/auth.reducer';
+import * as productReducer from '@app/features/admin-product/state/product.reducer';
 
 export interface ApplicationState {
   auth: authReducer.AuthState;

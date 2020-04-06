@@ -18,42 +18,8 @@ import { ShippingSummary, BillingSummary, PaymentSummary } from '@app/features/c
 
 @Component({
   selector: 'sc-checkout-steps',
-  template: `
-    <div>
-      <div id="registration">
-        <form id="regForm" [formGroup]="checkoutStepsForm">
-          <mat-horizontal-stepper #stepper linear (selectionChange)="selectionChange($event)">
-            <mat-step formGroupName="shippingDetails" [stepControl]="checkoutStepsForm.get('shippingDetails')">
-              <ng-template matStepLabel>Shipping</ng-template>
-              <sc-shipping-information
-                [checkoutStepsForm]="checkoutStepsForm"
-                (isShippingEqualsBilling)="setShippingAsBilling($event)"
-                (selectedShippingOption)="setShippingOption($event)"
-                (shippingSummary)="setShippingSummary($event)"
-              ></sc-shipping-information>
-            </mat-step>
-            <mat-step formGroupName="billingDetails" [stepControl]="checkoutStepsForm.get('billingDetails')">
-              <ng-template matStepLabel>Billing</ng-template>
-              <sc-billing-information
-                [checkoutStepsForm]="checkoutStepsForm"
-                [sameShippingBilling]="sameShippingBilling"
-                (billingSummary)="setBillingSummary($event)"
-                (paymentSummary)="setPaymentSummary($event)"
-              ></sc-billing-information>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>Place Order</ng-template>
-              <sc-place-order
-                [products$]="products$"
-                (checkoutCompleted)="setCheckoutCompleted($event)"
-              ></sc-place-order>
-            </mat-step>
-          </mat-horizontal-stepper>
-        </form>
-      </div>
-    </div>
-  `,
-  styles: [``],
+  templateUrl: `./checkout-steps.component.html`,
+  styleUrls: [`./checkout-steps.component.scss`],
 })
 export class CheckoutStepsComponent implements OnInit, AfterContentChecked {
   @Input() public products$: Observable<Product[]>;

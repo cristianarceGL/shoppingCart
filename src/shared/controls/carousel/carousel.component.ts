@@ -23,29 +23,7 @@ export const scaleOut = animation([
 
 @Component({
   selector: 'sc-carousel',
-  template: `
-    <div class="container" fxLayout="column">
-      <!-- carousel -->
-      <div class="carousel">
-        <ng-container *ngFor="let slide of slides; let i = index">
-          <img
-            *ngIf="i === currentSlide"
-            [src]="slide.src"
-            class="slide"
-            [ngClass]="{ resizeImg: checkCarousel(slide.src) === false }"
-            [@slideAnimation]="animationType"
-          />
-        </ng-container>
-        <!-- control arrows -->
-        <button class="control prev" (click)="onPreviousClick()">
-          <span class="arrow left"></span>
-        </button>
-        <button class="control next" (click)="onNextClick()">
-          <span class="arrow right"></span>
-        </button>
-      </div>
-    </div>
-  `,
+  templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   animations: [
     trigger('slideAnimation', [

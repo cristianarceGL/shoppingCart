@@ -9,7 +9,6 @@ import { envModules } from '@enviroments/environment';
 import { AuthModule } from '@app/features/authentication';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { LayoutModule } from '@app/features/core/layout/layout.module';
-import { RoutingStoreModule } from '@app/features/core/store/routing/routing-store.module';
 import { initialReducerMap, getInitialState, metaReducers } from '@app/features/global-state/app.state';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { initialReducerMap, getInitialState, metaReducers } from '@app/features/
     AppRoutingModule,
     AuthModule,
     LayoutModule,
-    RoutingStoreModule,
     StoreModule.forRoot(initialReducerMap, { initialState: getInitialState, metaReducers }),
     EffectsModule.forRoot([]),
     envModules,

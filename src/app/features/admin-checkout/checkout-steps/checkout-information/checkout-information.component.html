@@ -101,7 +101,7 @@
   <br>
   <mat-form-field class="mat-form-field" [hideRequiredMarker]="false" [floatLabel]="true">
     <input matInput placeholder="Zip Code" [formControl]="zipCodeControl" [errorStateMatcher]="matcher"
-      [attr.data-cy]="currentStep + '-zipCode'" type="text" required>
+      [attr.data-cy]="currentStep + '-zipCode'" type="text" maxlength="5" required>
     <mat-error *ngIf="zipCodeControl.hasError('required')">
       Zip Code is required
     </mat-error>

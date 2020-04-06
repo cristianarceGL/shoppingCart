@@ -6,83 +6,14 @@ import { Component, ChangeDetectionStrategy, OnInit, ViewChild } from '@angular/
 import { Product } from '@app/features/core/models/product.model';
 import { ApplicationState } from '@app/features/global-state/app.state';
 import { ShippingOptions } from '@app/features/core/common/enums/general.enum';
-import { OrderActions, OrderSelectors } from '@app/features/admin-order/+state';
+import { OrderActions, OrderSelectors } from '@app/features/admin-order/state';
 import { CheckoutStepsComponent } from './checkout-steps/checkout-steps.component';
 import { ShippingSummary, BillingSummary, PaymentSummary } from '@app/features/core/models/summary.model';
 
 @Component({
   selector: 'sc-admin-checkout',
-  template: `
-    <div data-cy="checkout-steps-page">
-      <br />
-      <sc-checkout-completed
-        *ngIf="isCheckoutComplete"
-        [products]="checkoutItems"
-        [shippingAmount]="shippingAmount"
-        [shippingSummary]="shippingSummary"
-        [billingSummary]="billingSummary"
-        [paymentSummary]="paymentSummary"
-      ></sc-checkout-completed>
-      <div *ngIf="!isCheckoutComplete">
-        <br />
-        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="center">
-          <sc-checkout-steps
-            #checkoutSteps
-            fxLayout="column"
-            fxFlex="0 1 calc(75% - 32px)"
-            fxFlex.lt-sm="100%"
-            class="checkout-steps"
-            [products$]="cartItems$"
-            (selectedShippingOption)="setShippingOption($event)"
-            (isCheckoutComplete)="setCheckoutCompleted($event)"
-            (currentStepIndex)="setCurrentStepIndex($event)"
-            (shippingSummary)="setShippingSummary($event)"
-            (billingSummary)="setBillingSummary($event)"
-            (paymentSummary)="setPaymentSummary($event)"
-          ></sc-checkout-steps>
-          <div fxFlex="0 1 calc(25% - 32px)" fxFlex.lt-sm="100%">
-            <sc-order-summary
-              class="order-summary"
-              [shippingAmount]="shippingAmount"
-              [cartItems]="cartItems$ | async"
-              [cartSubtotalPrice]="cartTotalPrice$ | async"
-            >
-            </sc-order-summary>
-            <br />
-            <sc-step-summary
-              *ngIf="showShippingSummary"
-              class="step-summary"
-              stepName="shipping"
-              [stepSummary]="shippingSummary"
-              [selectedShipping]="selectedShipping"
-              (backToStep)="moveStepperToIndex(0)"
-            >
-            </sc-step-summary>
-            <br />
-            <sc-step-summary
-              *ngIf="showBillingSummary"
-              class="step-summary"
-              stepName="billing"
-              [stepSummary]="billingSummary"
-              (backToStep)="moveStepperToIndex(1)"
-            >
-            </sc-step-summary>
-            <br />
-            <sc-step-summary
-              *ngIf="showBillingSummary"
-              class="step-summary"
-              stepName="payment"
-              [stepSummary]="paymentSummary"
-              (backToStep)="moveStepperToIndex(1)"
-            >
-            </sc-step-summary>
-          </div>
-        </div>
-        <br /><br /><br />
-      </div>
-    </div>
-  `,
-  styles: [``],
+  templateUrl: `./admin-checkout.component.html`,
+  styleUrls: [`./admin-checkout.component.scss`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminCheckoutComponent implements OnInit {
