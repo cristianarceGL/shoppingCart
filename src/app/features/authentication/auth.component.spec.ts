@@ -9,9 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@app/shared/material';
 import { mockedState, authenticate } from '@app/mockdata/data/models-data';
 import { AuthComponent } from '@app/features/authentication/auth.component';
-import { AuthState } from '@app/features/authentication/+state/+auth.reducer';
-import * as authActions from '@app/features/authentication/+state/+auth.actions';
-import { AuthActionsList } from '@app/features/authentication/+state/+auth.actions.list';
+import { AuthState } from '@app/features/authentication/state/auth.reducer';
+import * as authActions from '@app/features/authentication/state/auth.actions';
+import { AuthActionsList } from '@app/features/authentication/state/auth.actions.list';
 import { LogInFormModule } from '@app/features/authentication/login-form/login-form.module';
 
 describe('AuthComponent', () => {

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import {
@@ -33,4 +33,11 @@ const modules = [
   exports: [...modules, AngularFireModule],
   providers: [AngularFireAuthGuard],
 })
-export class FirebaseModule {}
+export class FirebaseModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: FirebaseModule,
+      providers: [AngularFireAuthGuard],
+    };
+  }
+}

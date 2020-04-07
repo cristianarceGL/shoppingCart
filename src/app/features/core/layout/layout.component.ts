@@ -5,25 +5,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '@app/features/authentication/models';
 import { Product } from '@app/features/core/models/product.model';
-import { OrderSelectors } from '@app/features/admin-order/+state';
+import { OrderSelectors } from '@app/features/admin-order/state';
 import { ApplicationState } from '@app/features/global-state/app.state';
-import { AuthSelectors, AuthActions } from '@app/features/authentication/+state';
+import { AuthSelectors, AuthActions } from '@app/features/authentication/state';
 
 @Component({
   selector: 'sc-layout',
-  template: `
-    <sc-header
-      [user]="user$ | async"
-      [cartTotal]="cartTotal$ | async"
-      [cartItems]="cartItems$ | async"
-      (checkoutCart)="checkoutCart()"
-      (signOut)="logOut()"
-    ></sc-header>
-    <br />
-    <ng-content></ng-content>
-    <sc-footer></sc-footer>
-  `,
-  styles: [''],
+  templateUrl: `./layout.component.html`,
+  styleUrls: [`./layout.component.scss`],
 })
 export class LayoutComponent implements OnInit {
   public user$: Observable<User | null>;

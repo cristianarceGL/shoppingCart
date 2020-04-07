@@ -7,15 +7,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '@app/shared/material';
-import { OrdertState } from '../admin-order/+state/+order.reducer';
+import { OrdertState } from '../admin-order/state/order.reducer';
 import { AdminCheckoutComponent } from './admin-checkout.component';
 import { CheckoutStepsModule } from './checkout-steps/checkout-steps.module';
 import { ShippingOptions } from '@app/features/core/common/enums/general.enum';
-import * as orderActions from '@app/features/admin-order/+state/+order.actions';
+import * as orderActions from '@app/features/admin-order/state/order.actions';
 import { StepSummaryModule } from './summaries/step-summary/step-summary.module';
 import { OrderSummaryModule } from './summaries/order-summary/order-summary.module';
 import { CheckoutCompletedModule } from './checkout-completed/checkout-summary.module';
-import { OrderActionsList } from '@app/features/admin-order/+state/+order.actions.list';
+import { OrderActionsList } from '@app/features/admin-order/state/order.actions.list';
 import { mockedState, mockStepSummary, mockPaymentSummary } from '@app/mockdata/data/models-data';
 
 describe('AdminCheckoutComponent', () => {

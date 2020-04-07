@@ -11,10 +11,10 @@ import { AdminProductComponent } from './admin-product.component';
 import { mockedState, products } from '@app/mockdata/data/models-data';
 import { ProductListModule } from './product-list/product-list.module';
 import { DisplayView } from '@app/features/core/common/enums/general.enum';
-import { OrdertState } from '@app/features/admin-order/+state/+order.reducer';
+import { OrdertState } from '@app/features/admin-order/state/order.reducer';
 import { ProductDetailsModule } from './product-details/product-details.module';
-import * as orderActions from '@app/features/admin-order/+state/+order.actions';
-import { OrderActionsList } from '@app/features/admin-order/+state/+order.actions.list';
+import * as orderActions from '@app/features/admin-order/state/order.actions';
+import { OrderActionsList } from '@app/features/admin-order/state/order.actions.list';
 
 describe('AdminProductComponent', () => {
   let component: TestCmpWrapper;
