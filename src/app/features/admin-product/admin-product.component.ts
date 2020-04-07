@@ -4,32 +4,16 @@ import { LocationStrategy } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 
 import { Slide } from '@app/features/core/models/slide.model';
-import { OrderActions } from '@app/features/admin-order/+state';
+import { OrderActions } from '@app/features/admin-order/state';
 import { Product } from '@app/features/core/models/product.model';
 import { ApplicationState } from '@app/features/global-state/app.state';
 import { DisplayView } from '@app/features/core/common/enums/general.enum';
-import { ProductActions, ProductSelectors } from '@app/features/admin-product/+state';
+import { ProductActions, ProductSelectors } from '@app/features/admin-product/state';
 
 @Component({
   selector: 'sc-admin-product',
-  template: `
-    <div data-cy="products-page">
-      <sc-product-list
-        *ngIf="currentView == DisplayView.List && products$"
-        [products$]="products$"
-        [slides]="slides$"
-        (productToShow)="showItem($event)"
-      >
-      </sc-product-list>
-      <sc-product-details
-        *ngIf="currentView == DisplayView.Item && productSelected$"
-        [product$]="productSelected$"
-        (backTo)="showList()"
-        (productInCart)="addToCart($event)"
-      >
-      </sc-product-details>
-    </div>
-  `,
+  templateUrl: `./admin-product.component.html`,
+  styleUrls: [`./admin-product.component.scss`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminProductComponent implements OnInit, OnDestroy {

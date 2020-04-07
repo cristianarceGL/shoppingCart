@@ -9,7 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
 import { Authenticate, User } from './models';
 import { authenticate, user } from '@app/mockdata/data/models-data';
-import { MatSnackBarComponent, MaterialModule } from '@app/shared/shared.module';
+import { SnackBarComponent, MaterialModule } from '@app/shared/shared.module';
 
 const fakeAuthState = new BehaviorSubject(null);
 
@@ -52,7 +52,7 @@ describe('UserService', () => {
         AuthService,
         { provide: AngularFireAuth, useValue: angularFireAuthStub },
         { provide: Router, useClass: RouterStub },
-        MatSnackBarComponent,
+        SnackBarComponent,
       ],
     });
 

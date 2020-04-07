@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 
 import { CarouselModule } from '@app/shared/controls/carousel/carousel.module';
 import { CarouselComponent } from '@app/shared/controls/carousel/carousel.component';
-import { MatSnackBarModule } from '@app/shared/controls/mat-snack-bar/mat-snack-bar.module';
-import { MatSnackBarComponent } from '@app/shared/controls/mat-snack-bar/mat-snack-bar.component';
+import { SnackBarModule } from '@app/shared/controls/snack-bar/snack-bar.module';
+import { SnackBarComponent } from '@app/shared/controls/snack-bar/snack-bar.component';
 
 export { CarouselComponent };
-export { MatSnackBarComponent };
+export { SnackBarComponent };
 
-const toExport = [CarouselModule, MatSnackBarModule];
+const toExport = [CarouselModule, SnackBarModule];
 
 @NgModule({
   imports: [...toExport],

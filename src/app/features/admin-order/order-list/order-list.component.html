@@ -1,0 +1,30 @@
+<div data-cy="order-list" fxFlex="100%">
+  <mat-card *ngFor="let product of products$ | async; let i = index" [attr.data-cy]="'element-' + i" fxLayout="column">
+    <div fxFlex="100%" fxLayout="row">
+      <a (click)="removeItem(product.id)" class="remove-element"></a>
+      <mat-card-content [class.mat-elevation-z8]="true">
+        <img mat-card-image [src]="product.imgUrl" alt="Photo of a Product" />
+      </mat-card-content>
+      <mat-card-header>
+        <mat-card-title>{{ product.title }}</mat-card-title>
+        <mat-card-subtitle>{{ product.price | currency }} * In stock</mat-card-subtitle>
+        <mat-card-subtitle>
+          <button mat-raised-button (click)="updateQuantity(product, 'substract')">-</button>
+          <button mat-raised-button disabled>{{ product.quantity }}</button>
+          <button mat-raised-button (click)="updateQuantity(product, 'add')">+</button>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </div>
+    <div fxFlex="100%" fxLayout="row">
+      <mat-divider></mat-divider>
+      <mat-card-content class="reserve-space"></mat-card-content>
+      <mat-card-header>
+        <mat-card-title>
+          Total ({{ product.quantity }})<span class="total-display">{{
+                product.price * product.quantity | currency
+              }}</span>
+        </mat-card-title>
+      </mat-card-header>
+    </div>
+  </mat-card>
+</div>

@@ -9,7 +9,7 @@ import { OrderCheckoutGuard } from './order-checkout.guard';
 import { AuthService } from '@app/features/authentication/auth.service';
 import { Authenticate, User } from '@app/features/authentication/models';
 import { AngularFireAuth } from '@app/features/core/firebase/firebase.module';
-import { MatSnackBarComponent, MaterialModule } from '@app/shared/shared.module';
+import { SnackBarComponent, MaterialModule } from '@app/shared/shared.module';
 import { authenticate, user, mockedState, mockOrder } from '@app/mockdata/data/models-data';
 
 const fakeAuthState = new BehaviorSubject(null);
@@ -39,7 +39,7 @@ describe('AuthGuard - No items in cart', () => {
         AuthService,
         { provide: AngularFireAuth, useValue: angularFireAuthStub },
         { provide: Router, useClass: RouterStub },
-        MatSnackBarComponent,
+        SnackBarComponent,
         OrderCheckoutGuard,
         provideMockStore({ initialState: noItemsInCart }),
       ],
@@ -102,7 +102,7 @@ describe('AuthGuard - Do have items in cart', () => {
         AuthService,
         { provide: AngularFireAuth, useValue: angularFireAuthStub },
         { provide: Router, useClass: RouterStub },
-        MatSnackBarComponent,
+        SnackBarComponent,
         OrderCheckoutGuard,
         provideMockStore({ initialState: noItemsInCart }),
       ],

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { RoutingStoreModule } from '@app/features/core/store/routing';
 import { AdminCheckoutComponent } from '@app/features/admin-checkout/admin-checkout.component';
 import { AdminOrderRoutingModule } from '@app/features/admin-checkout/admin-checkout-routing.module';
 import { CheckoutStepsModule } from '@app/features/admin-checkout/checkout-steps/checkout-steps.module';
@@ -19,7 +18,6 @@ const modules = [
   SharedModule,
   RouterModule,
   AdminOrderRoutingModule,
-  RoutingStoreModule,
   OrderSummaryModule,
   CheckoutCompletedModule,
   CheckoutStepsModule,

@@ -12,6 +12,7 @@ import { ShippingSummary, PaymentSummary } from '@app/features/core/models/summa
 @Component({
   selector: 'sc-checkout-information',
   templateUrl: './checkout-information.component.html',
+  styleUrls: ['./checkout-information.component.scss'],
 })
 export class CheckoutInformationComponent implements OnInit, OnChanges {
   @Input() public checkoutStepsForm: FormGroup;

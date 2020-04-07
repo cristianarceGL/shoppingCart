@@ -11,9 +11,9 @@ import { LayoutComponent } from './layout.component';
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
 import { mockedState } from '@app/mockdata/data/models-data';
-import { AuthState } from '@app/features/authentication/+state/+auth.reducer';
-import * as authActions from '@app/features/authentication/+state/+auth.actions';
-import { AuthActionsList } from '@app/features/authentication/+state/+auth.actions.list';
+import { AuthState } from '@app/features/authentication/state/auth.reducer';
+import * as authActions from '@app/features/authentication/state/auth.actions';
+import { AuthActionsList } from '@app/features/authentication/state/auth.actions.list';
 
 describe('LayoutComponent', () => {
   let component: TestCmpWrapper;

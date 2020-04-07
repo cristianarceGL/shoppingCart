@@ -7,46 +7,8 @@ import { ShippingSummary } from '@app/features/core/models/summary.model';
 
 @Component({
   selector: 'sc-shipping-information',
-  template: `
-    <sc-checkout-information
-      [checkoutStepsForm]="checkoutStepsForm"
-      currentStep="shipping"
-      (shippingSummary)="setShippingSummary($event)"
-    >
-      <div shippingBilling>
-        <mat-checkbox (change)="setShippingAsBilling($event.checked)">Use this address for Billing</mat-checkbox>
-        <br />
-        <br />
-        <mat-divider></mat-divider>
-      </div>
-      <div selectShipping>
-        <br />
-        <h6>Select Shipping</h6>
-        <mat-radio-group class="radio-group" (change)="setShippingOption($event)">
-          <mat-radio-button
-            class="radio-button"
-            *ngFor="let shippingOption of shippingOptions"
-            [value]="shippingOption"
-          >
-            {{ shippingOption }}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </sc-checkout-information>
-  `,
-  styles: [
-    `
-      .radio-group {
-        display: flex;
-        flex-direction: column;
-        margin: 15px 0;
-      }
-
-      .radio-button {
-        margin: 5px;
-      }
-    `,
-  ],
+  templateUrl: `./shipping-information.component.html`,
+  styleUrls: ['./shipping-information.component.scss'],
 })
 export class ShippingInformationComponent {
   @Input() public checkoutStepsForm: FormGroup;

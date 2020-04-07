@@ -12,9 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminOrderComponent } from './admin-order.component';
 import { OrderListModule } from './order-list/order-list.module';
 import { CartSummaryModule } from './cart-summary/cart-summary.module';
-import { OrdertState } from '@app/features/admin-order/+state/+order.reducer';
-import * as orderActions from '@app/features/admin-order/+state/+order.actions';
-import { OrderActionsList } from '@app/features/admin-order/+state/+order.actions.list';
+import { OrdertState } from '@app/features/admin-order/state/order.reducer';
+import * as orderActions from '@app/features/admin-order/state/order.actions';
+import { OrderActionsList } from '@app/features/admin-order/state/order.actions.list';
 
 describe('AdminOrderComponent', () => {
   let component: TestCmpWrapper;
