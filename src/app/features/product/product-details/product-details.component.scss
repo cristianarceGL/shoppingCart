@@ -1,0 +1,42 @@
+@import 'src/styles/core/variables';
+
+mat-card.mat-card {
+  box-shadow: 10px 10px 10px #00000000;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+
+  & mat-card-content {
+    margin: 0 16px;
+    position: relative;
+  }
+}
+
+.content {
+  padding: 10px auto;
+
+  & div {
+    margin: 20px 3px;
+  }
+}
+
+.mat-card-image {
+  margin: 0 -16px 16px -16px;
+  width: 250px;
+}
+
+p {
+  color: $sc-light-medium-emphasis;
+  font: 14px/18px Open Sans Regular, sans-serif;
+  max-width: fit-content;
+}
+
+input {
+  border-radius: 3px;
+  width: 15%;
+}
+
+button[color='primary'] {
+  margin-right: 1vw;
+}

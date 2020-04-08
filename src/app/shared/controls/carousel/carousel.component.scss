@@ -1,0 +1,123 @@
+@import 'src/styles/core/variables';
+
+// =========================
+// Carousel
+// =========================
+:host {
+  flex: 1;
+}
+
+.carousel {
+  background-color: $sc-dark-container;
+  border-radius: 0.5em;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.slide {
+  border-radius: 0.5em;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transition: transform 150ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
+  width: 100%;
+
+  &:hover {
+    transform: scale(1.025);
+  }
+}
+
+// =========================
+// Next and Prev buttons
+// =========================
+.control {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 3em;
+  font-weight: bold;
+  height: 100%;
+  justify-content: center;
+  opacity: 80%;
+  outline: 0; // remove blue outline border, but make sure they are still focussable for accessibility
+  padding: 0.5em;
+  position: absolute;
+  // opacity effect on hover
+  transition: opacity 150ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+
+  /* Position the buttons */
+  &.next {
+    right: 0;
+  }
+
+  &.prev {
+    left: 0;
+  }
+}
+
+/* style the arrows */
+.arrow {
+  border-bottom: 0.1em solid white;
+  border-left: 0.1em solid white;
+  display: block;
+  height: 0.5em;
+  width: 0.5em;
+
+  &.left {
+    transform: rotate(45deg);
+  }
+
+  &.right {
+    transform: rotate(225deg);
+  }
+}
+
+.resizeImg {
+  margin-top: 2%;
+}
+
+.container {
+  display: block;
+  height: 60vh;
+  margin: 0;
+  width: 100vw;
+}
+
+@media screen and (max-width: 768px) {
+  .carousel .slide {
+    object-fit: scale-down;
+  }
+
+  .container {
+    height: 30vh;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .resizeImg {
+    height: 55vh;
+    left: 40vw;
+    top: 0vh;
+    width: 250px;
+  }
+}

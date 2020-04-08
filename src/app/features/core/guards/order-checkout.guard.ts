@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { take, switchMap } from 'rxjs/operators';
 import { CanActivate, Router } from '@angular/router';
 
-import { OrderSelectors } from '@app/features/admin-order/state';
+import { OrderSelectors } from '@app/features/order/state';
 import { ApplicationState } from '@app/features/global-state/app.state';
 
 @Injectable({
