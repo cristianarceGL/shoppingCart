@@ -16,18 +16,17 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: () => import('@app/features/admin-product/admin-product.module').then(mod => mod.AdminProductModule),
+    loadChildren: () => import('@app/features/product/product.module').then(mod => mod.ProductModule),
     ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'orders',
-    loadChildren: () => import('@app/features/admin-order/admin-order.module').then(mod => mod.AdminOrderModule),
+    loadChildren: () => import('@app/features/order/order.module').then(mod => mod.OrderModule),
     canActivate: [OrderCheckoutGuard],
   },
   {
     path: 'checkouts',
-    loadChildren: () =>
-      import('@app/features/admin-checkout/admin-checkout.module').then(mod => mod.AdminCheckoutModule),
+    loadChildren: () => import('@app/features/checkout/checkout.module').then(mod => mod.CheckoutModule),
     canActivate: [OrderCheckoutGuard],
   },
   { path: '**', redirectTo: 'auth', pathMatch: 'full' },

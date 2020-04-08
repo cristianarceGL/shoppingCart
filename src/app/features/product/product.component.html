@@ -1,0 +1,8 @@
+<div data-cy="products-page">
+  <sc-product-list *ngIf="currentView == DisplayView.List && products$" [products]="products$ | async"
+    [slides]="slides$ | async" (productToShow)="showItem($event)">
+  </sc-product-list>
+  <sc-product-details *ngIf="currentView == DisplayView.Item && productSelected$"
+    [productSelected]="productSelected$ | async" (backTo)="showList()" (productInCart)="addToCart($event)">
+  </sc-product-details>
+</div>

@@ -1,0 +1,116 @@
+@import 'src/styles/core/variables';
+
+.mat-card {
+  margin: 15vh auto;
+  text-align: center;
+  width: 85%;
+}
+
+.mat-card-content {
+  margin-top: 5vh;
+}
+
+.invoice-box {
+  border: 1px solid $sc-light-table;
+  box-shadow: 0 0 10px $sc-dark-shadow;
+  color: $sc-dark-color;
+  font-family: 'Helvetica Neue',
+    'Helvetica',
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto;
+  max-width: 800px;
+  padding: 30px;
+}
+
+.invoice-box table {
+  line-height: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.invoice-box table td {
+  padding: 5px;
+  vertical-align: top;
+}
+
+.invoice-box table tr td:nth-child(2) {
+  text-align: right;
+}
+
+.invoice-box table tr.top table td {
+  padding-bottom: 20px;
+}
+
+.invoice-box table tr.top table td.title {
+  color: $sc-dark-color;
+  font-size: 45px;
+  line-height: 45px;
+}
+
+.invoice-box table tr.information table td {
+  padding-bottom: 40px;
+}
+
+.invoice-box table tr.heading td {
+  background: $sc-light-table;
+  border-bottom: 1px solid $sc-light-table-border;
+  font-weight: bold;
+}
+
+.invoice-box table tr.details td {
+  padding-bottom: 20px;
+}
+
+.invoice-box table tr.item td {
+  border-bottom: 1px solid $sc-light-table;
+}
+
+.invoice-box table tr.item.last td {
+  border-bottom: none;
+}
+
+.invoice-box table tr.total td:nth-child(2) {
+  border-top: 2px solid $sc-light-table;
+  font-weight: bold;
+}
+
+.preview-invoice {
+  text-align: center;
+}
+
+.preview-print {
+  margin-bottom: 15vh;
+  margin-top: 5vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .invoice-box table tr.top table td {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  .invoice-box table tr.information table td {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/** RTL **/
+.rtl {
+  direction: rtl;
+  font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
+
+.rtl table {
+  text-align: right;
+}
+
+.rtl table tr td:nth-child(2) {
+  text-align: left;
+}

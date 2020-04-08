@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '@app/features/authentication/models';
 import { Product } from '@app/features/core/models/product.model';
-import { OrderSelectors } from '@app/features/admin-order/state';
+import { OrderSelectors } from '@app/features/order/state';
 import { ApplicationState } from '@app/features/global-state/app.state';
 import { AuthSelectors, AuthActions } from '@app/features/authentication/state';
 

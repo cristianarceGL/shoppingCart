@@ -1,0 +1,22 @@
+@import 'src/styles/core/variables';
+
+.background-card {
+  text-align: center;
+
+  & .percentage-70 {
+    background-color: $sc-percentage-70;
+  }
+
+  & .percentage-80 {
+    background-color: $sc-percentage-80;
+  }
+
+  & .percentage-90 {
+    background-color: $sc-percentage-90;
+  }
+}
+
+.mat-card-image:last-child {
+  margin: 0;
+  width: auto;
+}
