@@ -85,7 +85,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "~0.2.2",
-    "lint-staged": "~8.1.0",
+    "lint-staged": "~13.2.2",
     "ngrx-store-freeze": "~0.2.4",
     "prettier": "~1.17.1",
     "rimraf": "~2.6.3",
